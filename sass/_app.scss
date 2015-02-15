@@ -1,0 +1,28 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+body {
+	background-color: #fff;
+}
+
+.container {
+	width: 400px;
+	margin: 0 auto;
+	/*background-color: #000;*/
+
+	button {
+		@extend .button;
+		@extend .postfix;
+		@extend .radius;
+	}
+}
+
+.player-container {
+	.player {
+		background-color: #ccc;
+		padding: 5px 3px;
+	}
+}
+
+.active { background-color:#ccc; }
