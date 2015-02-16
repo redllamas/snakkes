@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var config = require('./app/config/config.js')(process);
-var websocket = require('./app/components/websocket')(io);
+var websocket = require('./app/components/websocket/init.js')(io);
 
 //config
 app.set('config', config);
