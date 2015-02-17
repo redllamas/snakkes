@@ -5,9 +5,11 @@
   "dependencies": {
     "express": "4.11.1",
     "rethinkdb": "1.16.0",
-    "socket.io": "1.3.3",
+    "socket.io": "1.3.4",
+    "socket.io-client": "1.3.4",
     "bluebird": "2.9.6",
     "angular": "1.3.13",
+    "angular-route": "1.3.13",
     "d3": "3.5.5",
     "jquery": "2.1.3",
     "foundation-scss": "5.5.0"

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="/styles/foundation-icons.css" />
+		<link rel="stylesheet" href="/styles/main.css" />
+	</head>
+	<body ng-app="app">
+		<div class="container">
+
+			<div ng-controller="controller as vm">
+				<input type="text" ng-model="vm.gravatar" />
+				<img ng-src="http://www.gravatar.com/avatar/{{vm.gravatarHash}}" />
+				<button ng-click="vm.hashUri()">update</button>
+				<div ng-repeat="player in vm.players">
+					<div ng-class="{ active: player.id === vm.myPlayerId }" ng-click="vm.sendChallenge(player.id)">{{ player.id }}</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+		<script>
+
+		</script>
+		<script>
+			(function () {
+				'use strict';
+
+				angular.module('app', [])
+					// .config(configure)
+					.controller('controller', controller);
+
+				// configure.$inject = ['$routeProvider'];
+				controller.$inject = ['$scope'];
+
+				// function configure($routeProvider) {
+				// 	$routeProvider
+				// 		.when('/lobby', {
+
+				// 		})
+				// 		.when('/game', {
+
+				// 		})
+				// 		.otherwise({
+				// 			redirectTo: '/lobby'
+				// 		});
+				// };
+
+				function controller($scope) {
+					var vm = this;
+					vm.players = [];
+					vm.myPlayerId = '';
+					vm.sendChallenge = sendChallenge;
+					vm.gravatar = '';
+					vm.gravatarHash = '';
+					vm.hashUri = hashUri;
+
+					var socket = io('/lobby');
+
+
+					socket.on('connect', function () {
+						vm.myPlayerId = this.io.engine.id;
+						$scope.$apply();
+					});
+
+					socket.on('players', function (players) {
+						vm.players = players;
+						$scope.$apply();
+					});
+
+					socket.on('challenge', function () {
+						console.log('got challenge');
+					});
+
+					function sendChallenge(playerId) {
+						console.log(playerId);
+						socket.emit('challenge', playerId);
+					};
+
+					function hashUri() {
+						vm.gravatarHash = CryptoJS.MD5(vm.gravatar).toString();
+					};
+
+
+				};
+			})();
+		</script>
+	</body>
+</html>

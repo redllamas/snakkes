@@ -1,1 +1,1 @@
-node ./node_modules/watchify/bin/cmd.js ./client.js -o ./public/scripts/main.js -v
+node ./node_modules/watchify/bin/cmd.js ./client/main.js -o ./public/scripts/main.js -v
