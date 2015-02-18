@@ -1,19 +1,32 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/oliver/Webroot/snakkes/client/components/websocket.js":[function(require,module,exports){
 'use strict';
 
-var io = require('socket.io-client');
-var lobby = io('http://localhost:3000/lobby');
-var game  = io('http://localhost:3000/game');
+angular
+    .module('app')
+    .factory('socket', socket);
 
-lobby.on('connect', function (socket) {
-    console.log('lobby connect');
-    lobby.emit('hi');
-});
+socket.$inject = [];
 
-game.on('connect', function (socket) {
-    console.log('game connect');
-    game.emit('hii');
-});
+function socket() {
+    var io = require('socket.io-client');
+    var lobby = io('http://localhost:3000/lobby');
+    var game  = io('http://localhost:3000/game');
+    var service = {
+        emit: emit,
+        players: players
+    };
+    return service;
+
+    ////////////
+
+    function emit(message) {
+        lobby.emit(message);
+    };
+
+    function players(callback) {
+        lobby.on('players', callback);
+    };
+};
 
 },{"socket.io-client":"/Users/oliver/Webroot/snakkes/node_modules/socket.io-client/index.js"}],"/Users/oliver/Webroot/snakkes/client/controllers/game-controller.js":[function(require,module,exports){
 'use strict';
@@ -46,19 +59,29 @@ angular
     .module('app.lobby-controller', [])
     .controller('LobbyController', LobbyController);
 
-LobbyController.$inject = [];
+LobbyController.$inject = ['$scope', 'socket'];
 
-function LobbyController() {
+function LobbyController($scope, socket) {
     var vm = this;
 
     vm.lobby = {};
+    vm.players = [];
+    vm.acceptChallenge = acceptChallenge;
 
     activate();
 
     ////////////
 
     function activate() {
-        //
+        socket.players(function (players) {
+            vm.players = players;
+            $scope.$apply();
+        });
+    };
+
+    function acceptChallenge() {
+        console.log('click click');
+        socket.emit('acceptChallenge', 'hi there');
     };
 
 };

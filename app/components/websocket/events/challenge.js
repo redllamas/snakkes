@@ -10,11 +10,12 @@ module.exports = function (namespace, socket) {
     });
 
     socket.on('acceptChallenge', function (player) {
-        var ownPlayer = socket.client.id;
-        var gameId    = ownPlayer + '-' + player;
-        players.find(player).acceptChallenge().setRoomId(gameId);
-        players.find(ownPlayer).acceptChallenge().setRoomId(gameId);
-        socket.broadcast.to(player).emit('acceptChallenge', ownPlayer);
+        // var ownPlayer = socket.client.id;
+        // var gameId    = ownPlayer + '-' + player;
+        // players.find(player).acceptChallenge().setRoomId(gameId);
+        // players.find(ownPlayer).acceptChallenge().setRoomId(gameId);
+        // socket.broadcast.to(player).emit('acceptChallenge', ownPlayer);
+        socket.emit('acceptChallenge', 'from server');
     });
 
     socket.on('declineChallenge', function (player) {

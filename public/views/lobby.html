@@ -2,4 +2,6 @@
 	lobby
 	<a href="/#/lobby">lobby</a>
 	<a href="/#/game">game</a>
+	<div>{{ vm.players | json }}</div>
+	<button ng-click="vm.acceptChallenge()">acceptChallenge</button>
 </div>
