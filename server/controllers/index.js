@@ -1,3 +1,3 @@
-var basecontroller = require('./basecontroller');
+var basecontroller = require('./base-controller');
 
 module.exports.base = basecontroller;

@@ -35,6 +35,7 @@ function socket() {
     var lobby = io('http://localhost:3000/lobby');
     var game  = io('http://localhost:3000/game');
     var service = {
+        on: on,
         emit: emit,
         connect: connect,
         players: players
@@ -42,6 +43,10 @@ function socket() {
     return service;
 
     ////////////
+
+    function on(event, callback) {
+        lobby.on(event, callback);
+    };
 
     function emit(event, message) {
         lobby.emit(event, message);
@@ -92,11 +97,13 @@ LobbyController.$inject = ['$scope', 'socket', 'md5'];
 function LobbyController($scope, socket, md5) {
     var vm = this;
 
-    vm.lobby = {};
     vm.player = {};
     vm.players = [];
+    vm.opponent = {};
     vm.md5 = md5;
     vm.updateInfo = updateInfo;
+    vm.challenge = challenge;
+    vm.declineChallenge = declineChallenge;
     vm.acceptChallenge = acceptChallenge;
 
     activate();
@@ -105,9 +112,12 @@ function LobbyController($scope, socket, md5) {
 
     function activate() {
         socket.connect(function () {
-            console.log('connected');
             vm.player.id = this.io.engine.id;
             $scope.$apply();
+        });
+
+        socket.on('disconnect', function () {
+            declineChallenge();
         });
 
         socket.players(function (players) {
@@ -117,16 +127,30 @@ function LobbyController($scope, socket, md5) {
             vm.players = players;
             $scope.$apply();
         });
+
+        socket.on('challenge', function (opponentId) {
+            players.forEach(function (player) {
+                if(player.id === opponentId) {
+                    vm.opponent = player;
+                }
+            });
+        });
     };
 
     function updateInfo() {
-        console.log('update info');
         socket.emit('updatePlayer', vm.player);
     };
 
+    function challenge(playerId) {
+        socket.emit('challenge', playerId);
+    };
+
+    function declineChallenge() {
+        socket.emit('declineChallenge', vm.opponent.id);
+    };
+
     function acceptChallenge() {
-        console.log('click click');
-        socket.emit('acceptChallenge', 'hi there');
+        //socket.emit('acceptChallenge', 'hi there');
     };
 
     function hashUri() {

@@ -1,5 +1,7 @@
 function Player(id) {
     this.canChallenge = true;
+    this.challenger = false;
+    this.defender = false;
     this.inGame = false;
     this.gameRoom = '';
     this.id = id;
@@ -24,8 +26,15 @@ Player.prototype.setRoomId = function (roomId) {
     return this;
 };
 
+Player.prototype.gotChallenge = function () {
+    this.canChallenge = false;
+    this.defender = true;
+    return this;
+};
+
 Player.prototype.awaitResponse = function () {
     this.canChallenge = false;
+    this.challenger = true;
     return this;
 };
 

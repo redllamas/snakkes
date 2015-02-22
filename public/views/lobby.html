@@ -17,8 +17,19 @@
 			<div>name: {{ player.name }}</div>
 			<div>awaiting: {{ player.canChallenge }}</div>
 			<div>inGame: {{ player.inGame }}</div>
-			<button class="challenge" ng-show="player.id !== vm.player.id" ng-click="vm.challenge()">challenge</button>
+			<button class="challenge" ng-show="player.id !== vm.player.id" ng-click="vm.challenge(player.id)">challenge</button>
 		</div>
 	</div>
-	<button ng-click="vm.acceptChallenge()">acceptChallenge</button>
+	<div class="challenge-window" ng-show=" ! vm.player.canChallenge">
+		<h2 ng-show="vm.player.challenger">Waiting for response</h2>
+		<h2 ng-show="vm.player.defender">You've been challenged!</h2>
+		<div>Opponent:</div>
+		<div>
+			<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(vm.opponent.email) }}" />
+			<span>{{ vm.opponent.name }}</span>
+		</div>
+		<div ng-show="vm.player.defender">
+			<button ng-click="vm.declineChallenge()">decline</button>
+		</div>
+	</div>
 </div>
