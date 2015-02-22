@@ -5,7 +5,7 @@ function Player(id) {
     this.id = id;
     this.name = id;
     this.email = '';
-}
+};
 
 Player.prototype.finishGame = function (roomId) {
     this.canChallenge = true;
