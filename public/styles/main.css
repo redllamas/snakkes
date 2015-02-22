@@ -2264,9 +2264,22 @@ body {
   margin: 0 auto;
   /*background-color: #000;*/ }
 
-.player-container .player {
-  background-color: #ccc;
-  padding: 5px 3px; }
+.fill-in-info, .player-list {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-botton: 10px; }
+
+.player-list .player {
+  margin-bottom: 5px; }
+  .player-list .player img {
+    float: left;
+    margin-right: 10px;
+    width: 30px;
+    height: auto; }
+  .player-list .player .challenge {
+    float: right; }
+.player-list .active {
+  background-color: #eee; }
 
 .active {
   background-color: #ccc; }

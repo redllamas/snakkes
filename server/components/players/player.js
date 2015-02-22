@@ -7,6 +7,11 @@ function Player(id) {
     this.email = '';
 };
 
+Player.prototype.update = function (player) {
+    this.name = player.name;
+    this.email = player.email;
+};
+
 Player.prototype.finishGame = function (roomId) {
     this.canChallenge = true;
     this.inGame = false;

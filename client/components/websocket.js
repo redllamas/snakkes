@@ -12,14 +12,19 @@ function socket() {
     var game  = io('http://localhost:3000/game');
     var service = {
         emit: emit,
+        connect: connect,
         players: players
     };
     return service;
 
     ////////////
 
-    function emit(message) {
-        lobby.emit(message);
+    function emit(event, message) {
+        lobby.emit(event, message);
+    };
+
+    function connect(callback) {
+        lobby.on('connect', callback);
     };
 
     function players(callback) {

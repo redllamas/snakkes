@@ -1,5 +1,6 @@
 module.exports = [
     require('./challenge'),
     require('./connect'),
-    require('./disconnect')
+    require('./disconnect'),
+    require('./updatePlayer')
 ];

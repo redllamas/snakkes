@@ -18,10 +18,27 @@ body {
 	}
 }
 
-.player-container {
+.fill-in-info, .player-list {
+	border: 1px solid #ccc;
+	padding: 15px;
+	margin-botton: 10px;
+}
+
+.player-list {
 	.player {
-		background-color: #ccc;
-		padding: 5px 3px;
+		margin-bottom:5px;
+		img {
+			float: left;
+			margin-right: 10px;
+			width:30px;
+			height: auto;
+		}
+		.challenge {
+			float:right;
+		}
+	}
+	.active {
+		background-color: #eee;
 	}
 }
 

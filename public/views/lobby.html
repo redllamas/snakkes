@@ -2,6 +2,23 @@
 	lobby
 	<a href="/#/lobby">lobby</a>
 	<a href="/#/game">game</a>
-	<div>{{ vm.players | json }}</div>
+	<h3>Update your info</h3>
+	<div class="fill-in-info">
+		<label>name</label>
+		<input type="text" ng-model="vm.player.name" />
+		<label>gravatar compatible email</label>
+		<input type="text" ng-model="vm.player.email" />
+		<button ng-click="vm.updateInfo()">update</button>
+	</div>
+	<h3>Player list</h3>
+	<div class="player-list">
+		<div class="player" ng-repeat="player in vm.players" ng-class="{ active: player.id === vm.player.id }">
+			<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(player.email) }}" />
+			<div>name: {{ player.name }}</div>
+			<div>awaiting: {{ player.canChallenge }}</div>
+			<div>inGame: {{ player.inGame }}</div>
+			<button class="challenge" ng-show="player.id !== vm.player.id" ng-click="vm.challenge()">challenge</button>
+		</div>
+	</div>
 	<button ng-click="vm.acceptChallenge()">acceptChallenge</button>
 </div>

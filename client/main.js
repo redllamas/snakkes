@@ -4,3 +4,4 @@ require('./controllers/lobby-controller');
 require('./controllers/game-controller');
 require('./routes');
 require('./components/websocket');
+require('./components/md5');
