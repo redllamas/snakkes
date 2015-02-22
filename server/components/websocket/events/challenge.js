@@ -27,5 +27,9 @@ module.exports = function (namespace, socket) {
         players.find(player).declineChallenge();
         players.find(ownPlayer).declineChallenge();
         socket.broadcast.to(player).emit('declineChallenge', ownPlayer);
+
+        if(namespace.name === '/lobby') {
+            namespace.emit('players', players.list);
+        }
     });
 };

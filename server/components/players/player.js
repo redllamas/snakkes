@@ -40,6 +40,8 @@ Player.prototype.awaitResponse = function () {
 
 Player.prototype.declineChallenge = function () {
     this.canChallenge = true;
+    this.challenger = false;
+    this.defender = false;
     this.gameRoom = '';
     return this;
 };

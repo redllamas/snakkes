@@ -33,19 +33,23 @@ function LobbyController($scope, socket, md5) {
         });
 
         socket.players(function (players) {
-            players.forEach(function (player) {
+            vm.players = players;
+            vm.players.forEach(function (player) {
                 if(player.id === vm.player.id) vm.player = player;
             });
-            vm.players = players;
             $scope.$apply();
         });
 
         socket.on('challenge', function (opponentId) {
-            players.forEach(function (player) {
+            vm.players.forEach(function (player) {
                 if(player.id === opponentId) {
                     vm.opponent = player;
                 }
             });
+        });
+
+        socket.on('declineChallenge', function (data) {
+            console.log(data)
         });
     };
 
@@ -58,6 +62,7 @@ function LobbyController($scope, socket, md5) {
     };
 
     function declineChallenge() {
+        //if (vm.opponent.id) socket.emit('declineChallenge', vm.opponent.id);
         socket.emit('declineChallenge', vm.opponent.id);
     };
 
