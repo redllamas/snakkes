@@ -37,8 +37,10 @@ function socket() {
     var service = {
         on: on,
         emit: emit,
+        gameEmit: gameEmit,
         connect: connect,
-        players: players
+        players: players,
+        gameMessage: gameMessage
     };
     return service;
 
@@ -52,12 +54,20 @@ function socket() {
         lobby.emit(event, message);
     };
 
+    function gameEmit(event, message) {
+        game.emit(event, message);
+    };
+
     function connect(callback) {
         lobby.on('connect', callback);
     };
 
     function players(callback) {
         lobby.on('players', callback);
+    };
+
+    function gameMessage(callback) {
+        game.on('message', callback);
     };
 };
 
@@ -68,19 +78,25 @@ angular
     .module('app.game-controller', [])
     .controller('GameController', GameController);
 
-GameController.$inject = [];
+GameController.$inject = ['socket'];
 
-function GameController() {
+function GameController(socket) {
     var vm = this;
 
-    vm.lobby = {};
+    vm.sendMessage = sendMessage;
 
     activate();
 
     ////////////
 
     function activate() {
-        //
+        socket.gameMessage(function (msg) {
+            console.log(msg);
+        });
+    };
+
+    function sendMessage() {
+        socket.gameEmit('message', 'hi there!');
     };
 
 };
@@ -92,9 +108,9 @@ angular
     .module('app.lobby-controller', [])
     .controller('LobbyController', LobbyController);
 
-LobbyController.$inject = ['$scope', 'socket', 'md5'];
+LobbyController.$inject = ['$scope', '$location', 'socket', 'md5'];
 
-function LobbyController($scope, socket, md5) {
+function LobbyController($scope, $location, socket, md5) {
     var vm = this;
 
     vm.player = {};
@@ -116,8 +132,14 @@ function LobbyController($scope, socket, md5) {
             $scope.$apply();
         });
 
-        socket.on('disconnect', function () {
-            declineChallenge();
+        // socket.on('disconnect', function () {
+        //     console.log('disconnecting..');
+        //     declineChallenge();
+        // });
+
+        socket.on('acceptChallenge', function () {
+            console.log('accept challenge');
+            $location.path('/game');
         });
 
         socket.players(function (players) {
@@ -136,9 +158,10 @@ function LobbyController($scope, socket, md5) {
             });
         });
 
-        socket.on('declineChallenge', function (data) {
-            console.log(data)
-        });
+        // socket.on('declineChallenge', function (data) {
+        //     console.log('declineChallenge');
+        //     console.log(data);
+        // });
     };
 
     function updateInfo() {
@@ -150,12 +173,11 @@ function LobbyController($scope, socket, md5) {
     };
 
     function declineChallenge() {
-        //if (vm.opponent.id) socket.emit('declineChallenge', vm.opponent.id);
         socket.emit('declineChallenge', vm.opponent.id);
     };
 
     function acceptChallenge() {
-        //socket.emit('acceptChallenge', 'hi there');
+        socket.emit('acceptChallenge', vm.opponent.id);
     };
 
     function hashUri() {

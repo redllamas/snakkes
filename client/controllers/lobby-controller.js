@@ -4,9 +4,9 @@ angular
     .module('app.lobby-controller', [])
     .controller('LobbyController', LobbyController);
 
-LobbyController.$inject = ['$scope', 'socket', 'md5'];
+LobbyController.$inject = ['$scope', '$location', 'socket', 'md5'];
 
-function LobbyController($scope, socket, md5) {
+function LobbyController($scope, $location, socket, md5) {
     var vm = this;
 
     vm.player = {};
@@ -28,8 +28,14 @@ function LobbyController($scope, socket, md5) {
             $scope.$apply();
         });
 
-        socket.on('disconnect', function () {
-            declineChallenge();
+        // socket.on('disconnect', function () {
+        //     console.log('disconnecting..');
+        //     declineChallenge();
+        // });
+
+        socket.on('acceptChallenge', function () {
+            console.log('accept challenge');
+            $location.path('/game');
         });
 
         socket.players(function (players) {
@@ -48,9 +54,10 @@ function LobbyController($scope, socket, md5) {
             });
         });
 
-        socket.on('declineChallenge', function (data) {
-            console.log(data)
-        });
+        // socket.on('declineChallenge', function (data) {
+        //     console.log('declineChallenge');
+        //     console.log(data);
+        // });
     };
 
     function updateInfo() {
@@ -62,12 +69,11 @@ function LobbyController($scope, socket, md5) {
     };
 
     function declineChallenge() {
-        //if (vm.opponent.id) socket.emit('declineChallenge', vm.opponent.id);
         socket.emit('declineChallenge', vm.opponent.id);
     };
 
     function acceptChallenge() {
-        //socket.emit('acceptChallenge', 'hi there');
+        socket.emit('acceptChallenge', vm.opponent.id);
     };
 
     function hashUri() {

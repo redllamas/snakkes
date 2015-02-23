@@ -13,8 +13,10 @@ function socket() {
     var service = {
         on: on,
         emit: emit,
+        gameEmit: gameEmit,
         connect: connect,
-        players: players
+        players: players,
+        gameMessage: gameMessage
     };
     return service;
 
@@ -28,11 +30,19 @@ function socket() {
         lobby.emit(event, message);
     };
 
+    function gameEmit(event, message) {
+        game.emit(event, message);
+    };
+
     function connect(callback) {
         lobby.on('connect', callback);
     };
 
     function players(callback) {
         lobby.on('players', callback);
+    };
+
+    function gameMessage(callback) {
+        game.on('message', callback);
     };
 };

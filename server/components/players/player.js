@@ -48,6 +48,7 @@ Player.prototype.declineChallenge = function () {
 
 Player.prototype.acceptChallenge = function () {
     this.inGame = true;
+    this.gameRoom = '';
     return this;
 };
 
