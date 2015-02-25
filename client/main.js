@@ -5,3 +5,4 @@ require('./controllers/game-controller');
 require('./routes');
 require('./components/websocket');
 require('./components/md5');
+require('./components/players');
