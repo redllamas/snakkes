@@ -28,23 +28,48 @@ angular
     .module('app')
     .factory('players', players);
 
-players.$inject = [];
+players.$inject = ['socket'];
 
-function players() {
-    // var players = [];
-    // var player = {};
-    // var opponent = {};
-    // var service = {
-    //     players:  players,
-    //     player:   player,
-    //     opponent: opponent
-    // };
+function players(socket) {
+
+    //websocket events
+    socket.connect(setPlayerId);
+    socket.gotChallenge(updateOpponent);
+    socket.players(updatePlayers);
+
+    var list = [];
+    var player = {};
+    var opponent = {};
     var service = {
-        players:  [],
-        player:   {},
-        opponent: {}
+        list: list,
+        player: player,
+        opponent: opponent
     };
     return service;
+
+    ////////////
+
+    function setPlayerId() {
+        player.id = this.io.engine.id;
+    };
+
+    function updateOpponent(opponentId) {
+        list.forEach(function (player) {
+            if(player.id === opponentId) {
+                for (var key in player) opponent[key] = player[key];
+            }
+        });
+    };
+
+    function updatePlayers(players) {
+        list.splice(0, list.length);
+        players.forEach(function (_player) {
+            list.push(_player);
+            if (player.id === _player.id) {
+                for (var key in _player) player[key] = _player[key];
+            }
+        });
+    };
 }
 
 },{}],"/Users/oliver/Webroot/snakkes/client/components/websocket.js":[function(require,module,exports){
@@ -65,6 +90,7 @@ function socket() {
         emit: emit,
         gameEmit: gameEmit,
         connect: connect,
+        gotChallenge: gotChallenge,
         players: players,
         gameMessage: gameMessage
     };
@@ -86,6 +112,10 @@ function socket() {
 
     function connect(callback) {
         lobby.on('connect', callback);
+    };
+
+    function gotChallenge(callback) {
+        lobby.on('challenge', callback);
     };
 
     function players(callback) {
@@ -120,23 +150,13 @@ function GameController(socket, players) {
 
     function activate() {
         console.log('game controller...');
-        // console.log(players.player);
-        // console.log(players.players);
-        // console.log(players.opponent);
-        // console.log('-----');
 
         socket.connect(function () {
             console.log('connecting game controller...');
-            // console.log('connecting game controller...');
-            // console.log('connecting game controller...');
-            // console.log('connecting game controller...');
-            // console.log(players.player);
-            // console.log(players.players);
-            // console.log(players.opponent);
-            // console.log('-----');
         });
 
         socket.gameMessage(function (msg) {
+            console.log(vm.player.gameRoom);
             console.log(msg);
         });
     };
@@ -159,11 +179,8 @@ LobbyController.$inject = ['$scope', '$location', 'socket', 'md5', 'players'];
 function LobbyController($scope, $location, socket, md5, players) {
     var vm = this;
 
-    vm.player = {};
-    vm.players = [];
-    vm.opponent = {};
     vm.player = players.player;
-    vm.players = players.players;
+    vm.players = players.list;
     vm.opponent = players.opponent;
     vm.md5 = md5;
     vm.updateInfo = updateInfo;
@@ -176,50 +193,19 @@ function LobbyController($scope, $location, socket, md5, players) {
     ////////////
 
     function activate() {
-        socket.connect(function () {
-            console.log('connecting lobby controller...');
-            vm.player.id = this.io.engine.id;
-            $scope.$apply();
-        });
 
-        // socket.on('disconnect', function () {
-        //     console.log('disconnecting..');
-        //     declineChallenge();
-        // });
-
-        socket.on('acceptChallenge', function () {
-            // console.log('accept challenge');
-            // console.log(players.player);
-            // console.log(players.players);
-            // console.log(players.opponent);
-            // console.log('-----');
+        socket.on('startGame', function () {
+            console.log('got startgame message');
             $location.path('/game');
-        });
-
-        socket.players(function (playerz) {
-            //vm.players = players;
-            vm.players.splice(0, vm.players.length);
-            playerz.forEach(function (player) {
-                vm.players.push(player);
-                if (vm.player.id === player.id) {
-                    for (var key in player) vm.player[key] = player[key]
-                }
-            });
             $scope.$apply();
-            // console.log('socket players');
-            // console.log(players.player);
-            // console.log(players.players);
-            // console.log(players.opponent);
-            // console.log('-----');
         });
 
-        socket.on('challenge', function (opponentId) {
-            vm.players.forEach(function (player) {
-                if(player.id === opponentId) {
-                    //vm.opponent = player;
-                    for (var key in player) vm.opponent[key] = player[key]
-                }
-            });
+        socket.on('message', function (msg) {
+            console.log('got message: ' + msg);
+        });
+
+        socket.players(function () {
+            $scope.$apply();
         });
 
         socket.on('declineChallenge', function (data) {
@@ -242,10 +228,6 @@ function LobbyController($scope, $location, socket, md5, players) {
 
     function acceptChallenge() {
         socket.emit('acceptChallenge', vm.opponent.id);
-    };
-
-    function hashUri() {
-        vm.gravatarHash = CryptoJS.MD5(vm.gravatar).toString();
     };
 
 };

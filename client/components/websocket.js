@@ -15,6 +15,7 @@ function socket() {
         emit: emit,
         gameEmit: gameEmit,
         connect: connect,
+        gotChallenge: gotChallenge,
         players: players,
         gameMessage: gameMessage
     };
@@ -36,6 +37,10 @@ function socket() {
 
     function connect(callback) {
         lobby.on('connect', callback);
+    };
+
+    function gotChallenge(callback) {
+        lobby.on('challenge', callback);
     };
 
     function players(callback) {

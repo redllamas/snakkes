@@ -20,23 +20,13 @@ function GameController(socket, players) {
 
     function activate() {
         console.log('game controller...');
-        // console.log(players.player);
-        // console.log(players.players);
-        // console.log(players.opponent);
-        // console.log('-----');
 
         socket.connect(function () {
             console.log('connecting game controller...');
-            // console.log('connecting game controller...');
-            // console.log('connecting game controller...');
-            // console.log('connecting game controller...');
-            // console.log(players.player);
-            // console.log(players.players);
-            // console.log(players.opponent);
-            // console.log('-----');
         });
 
         socket.gameMessage(function (msg) {
+            console.log(vm.player.gameRoom);
             console.log(msg);
         });
     };
