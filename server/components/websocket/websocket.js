@@ -1,10 +1,13 @@
-var events = require('./events');
+var events     = require('./events');
+var websocket  = {};
+var websockets = [];
 
-module.exports = function (io) {
-    var lobby = createNamespace('/lobby');
-    var game  = createNamespace('/game');
+websocket.init = function (io) {
+    lobby = createNamespace('/lobby');
+    game  = createNamespace('/game');
     registerEvents(lobby);
     registerEvents(game);
+    websockets = [io, lobby, game];
 
     function createNamespace(namespace) {
         return io.of(namespace);
@@ -18,3 +21,9 @@ module.exports = function (io) {
         });
     };
 };
+
+websocket.sockets = function () {
+    return websockets;
+}
+
+module.exports = websocket;
