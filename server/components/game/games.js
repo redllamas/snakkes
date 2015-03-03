@@ -1,44 +1,46 @@
-var events = require('./events');
-var Game   = require('./game');
-var games  = {};
-//var fps    = (1000/30); //30fps
-var fps    = (1000/1000);
-var timer  = null;
+var Game        = require('./game');
+//var fps       = (1000/30); //30fps
+var fps         = (1000/0.1);
+var timer       = null;
+var activeGames = [];
+var gameEvents  = [];
 
-var websocket = require('../websocket/websocket');
+module.exports = function () {
 
-games.activeGames = [];
+    function init(events) {
+        gameEvents = events || [];
+        if ( ! timer) timer = setInterval(function () { loop() }, fps);
+    };
 
-games.startLoop = function () {
-    if ( ! timer) timer = setInterval(function () { games.loop(); }, fps);
+    // function term() {
+    //     clearInterval(timer);
+    // };
+
+    function loop() {
+        activeGames.forEach(function (game) {
+            fireEvents(game);
+        });
+    };
+
+    function fireEvents(game) {
+        gameEvents.forEach(function (event) {
+            event(game);
+        });
+    };
+
+    function addNewGame() {
+        activeGames.push(new Game);
+    };
+
+    function removeGame(gameRoomIndex) {
+        activeGames.splice(gameRoomIndex, 1);
+    };
+
+    return {
+        init: init,
+        // term: term,
+        addNewGame: addNewGame,
+        removeGame: removeGame
+    };
+
 };
-
-games.stopLoop = function () {
-    clearInterval(timer);
-};
-
-games.loop = function () {
-    console.log('websockets');
-    console.log('----------');
-    console.log(websocket.sockets);
-    console.log('----------');
-    games.activeGames.forEach(function (game) {
-        games.fireEvents(game);
-    });
-};
-
-games.fireEvents = function (game) {
-    events.forEach(function (event) {
-        event(game);
-    });
-};
-
-games.startGame = function () {
-    games.activeGames.push(new Game);
-};
-
-games.stopGame = function (gameRoomIndex) {
-    games.activeGames.splice(gameRoomIndex, 1);
-};
-
-module.exports = games;

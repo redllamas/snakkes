@@ -1,11 +1,11 @@
-var express    = require('express');
-var app        = express();
-var server     = require('http').Server(app);
-var io         = require('socket.io')(server);
-var config     = require('./server/config/config')(process);
-var websocket  = require('./server/components/websocket/websocket').init(io);
-var routes     = require('./server/routes');
-var middleware = require('./server/middleware');
+var express     = require('express');
+var app         = express();
+var server      = require('http').Server(app);
+var io          = require('socket.io')(server);
+var config      = require('./server/config/config')(process);
+var game        = require('./server/components/game').init(io);
+var routes      = require('./server/routes');
+var middleware  = require('./server/middleware');
 
 //config
 app.set('config', config);

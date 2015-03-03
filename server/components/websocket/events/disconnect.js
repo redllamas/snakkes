@@ -1,4 +1,4 @@
-var players = require('../../players/players');
+var players = require('../../player/players');
 
 module.exports = function (namespace, socket) {
     socket.on('disconnect', function () {

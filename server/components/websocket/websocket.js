@@ -1,29 +1,42 @@
-var events     = require('./events');
-var websocket  = {};
+var websocket = null;
 var websockets = [];
 
-websocket.init = function (io) {
-    lobby = createNamespace('/lobby');
-    game  = createNamespace('/game');
-    registerEvents(lobby);
-    registerEvents(game);
-    websockets = [io, lobby, game];
+module.exports = function () {
 
-    function createNamespace(namespace) {
-        return io.of(namespace);
-    };
+    function init(io, events) {
+        websocket = io;
+        lobby  = createNamespace('/lobby');
+        game   = createNamespace('/game');
+        registerEvents(lobby);
+        registerEvents(game);
+        websockets.push(lobby);
+        websockets.push(game);
 
-    function registerEvents(namespace) {
-        namespace.on('connection', function (socket) {
-            events.forEach(function (event) {
-                event(namespace, socket);
+        function createNamespace(namespace) {
+            return io.of(namespace);
+        };
+
+        function registerEvents(namespace) {
+            namespace.on('connection', function (socket) {
+                events.forEach(function (event) {
+                    event(namespace, socket);
+                });
             });
-        });
+        };
     };
+
+    function socket() {
+        return websocket;
+    };
+
+    function sockets() {
+        return websockets;
+    };
+
+    return {
+        init: init,
+        socket: socket,
+        sockets: sockets
+    };
+
 };
-
-websocket.sockets = function () {
-    return websockets;
-}
-
-module.exports = websocket;

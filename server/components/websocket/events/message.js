@@ -4,8 +4,10 @@ module.exports = function (namespace, socket) {
 
     socket.on('message', function (message) {
 
-        games.startLoop();
-        games.startGame();
+        // games.startLoop();
+        // games.startGame();
+        games.startLoop.apply(games);
+        games.startGame.apply(games);
 
 
         // if(namespace.name === '/game') {
