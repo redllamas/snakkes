@@ -1,44 +1,24 @@
-var Game        = require('./game');
-//var fps       = (1000/30); //30fps
-var fps         = (1000/0.1);
-var timer       = null;
-var activeGames = [];
-var gameEvents  = [];
+var Game  = require('./game');
+var games = [];
 
 module.exports = function () {
 
-    function init(events) {
-        gameEvents = events || [];
-        if ( ! timer) timer = setInterval(function () { loop() }, fps);
-    };
+    addNewGame();
 
-    // function term() {
-    //     clearInterval(timer);
-    // };
-
-    function loop() {
-        activeGames.forEach(function (game) {
-            fireEvents(game);
-        });
-    };
-
-    function fireEvents(game) {
-        gameEvents.forEach(function (event) {
-            event(game);
-        });
+    function activeGames() {
+        return games;
     };
 
     function addNewGame() {
-        activeGames.push(new Game);
+        games.push(new Game);
     };
 
     function removeGame(gameRoomIndex) {
-        activeGames.splice(gameRoomIndex, 1);
+        games.splice(gameRoomIndex, 1);
     };
 
     return {
-        init: init,
-        // term: term,
+        activeGames: activeGames,
         addNewGame: addNewGame,
         removeGame: removeGame
     };

@@ -3,7 +3,8 @@ var app         = express();
 var server      = require('http').Server(app);
 var io          = require('socket.io')(server);
 var config      = require('./server/config/config')(process);
-var game        = require('./server/components/game').init(io);
+var websocket   = require('./server/components/websocket/handler')().init(io);
+var game        = require('./server/components/game/handler')().init();
 var routes      = require('./server/routes');
 var middleware  = require('./server/middleware');
 
