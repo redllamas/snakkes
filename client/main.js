@@ -6,3 +6,4 @@ require('./routes');
 require('./components/websocket');
 require('./components/md5');
 require('./components/players');
+require('./components/paint');

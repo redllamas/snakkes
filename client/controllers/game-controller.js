@@ -4,9 +4,9 @@ angular
     .module('app.game-controller', [])
     .controller('GameController', GameController);
 
-GameController.$inject = ['socket', 'players'];
+GameController.$inject = ['socket', 'players', 'paint'];
 
-function GameController(socket, players) {
+function GameController(socket, players, paint) {
     var vm = this;
 
     vm.player = players.player;
@@ -19,20 +19,21 @@ function GameController(socket, players) {
     ////////////
 
     function activate() {
-        console.log('game controller...');
+        paint.paint();
 
-        socket.connect(function () {
-            console.log('connecting game controller...');
-        });
+        // console.log('game controller...');
 
-        socket.gameMessage(function (msg) {
-            console.log(vm.player.gameRoom);
-            console.log(msg);
+        // socket.connect(function () {
+        //     console.log('connecting game controller...');
+        // });
+
+        socket.gameMessage(function (game) {
+            paint.repaint(game);
         });
     };
 
     function sendMessage() {
-        socket.gameEmit('message', 'hi there!');
+    //     socket.gameEmit('message', 'hi there!');
     };
 
 };

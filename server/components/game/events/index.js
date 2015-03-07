@@ -1,5 +1,6 @@
 module.exports = [
-    require('./paint'),
-    require('./repaint'),
-    require('./firstIteration')
+    require('./collision'),
+    require('./worm'),
+    require('./respawn'),
+    require('./emit')
 ];
