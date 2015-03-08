@@ -65,18 +65,7 @@ function paint() {
         });
     };
 
-    function repaint(game) {
-
-        var colors = [];
-
-        colors.push({ x: game.apple.coord.x, y: game.apple.coord.y, color: game.apple.color });
-
-        game.worms.forEach(function (worm) {
-            var color = worm.color;
-            worm.coords.forEach(function (coord) {
-                colors.push({ x: coord.x, y: coord.y, color: color });
-            });
-        });
+    function repaint(colors) {
 
         d3.selectAll('#board .pixies').each(function () {
             var _this = d3.select(this);
@@ -251,8 +240,8 @@ function GameController(socket, players, paint) {
         //     console.log('connecting game controller...');
         // });
 
-        socket.gameMessage(function (game) {
-            paint.repaint(game);
+        socket.gameMessage(function (colors) {
+            paint.repaint(colors);
         });
     };
 

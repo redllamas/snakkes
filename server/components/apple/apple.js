@@ -22,6 +22,10 @@ Apple.prototype.getNewCoordinate = function (wormCoords) {
     }
 };
 
+Apple.prototype.getColor = function () {
+    return this.color;
+};
+
 Apple.prototype.getCoordinate = function () {
     return this.coord;
 };

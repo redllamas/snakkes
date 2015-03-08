@@ -27,8 +27,8 @@ function GameController(socket, players, paint) {
         //     console.log('connecting game controller...');
         // });
 
-        socket.gameMessage(function (game) {
-            paint.repaint(game);
+        socket.gameMessage(function (colors) {
+            paint.repaint(colors);
         });
     };
 

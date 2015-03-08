@@ -38,6 +38,10 @@ Worm.prototype.currentCoordinate = function () {
     return this.coords[this.coords.length-1];
 };
 
+Worm.prototype.getColor = function () {
+    return this.color;
+};
+
 Worm.prototype.getCoordinates = function () {
     return this.coords;
 };
