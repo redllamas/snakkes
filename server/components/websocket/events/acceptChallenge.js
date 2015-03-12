@@ -1,4 +1,5 @@
 var players = require('../../player/players');
+var games   = require('../../game/games');
 
 module.exports = function (namespace, socket) {
 
@@ -37,6 +38,11 @@ module.exports = function (namespace, socket) {
         }
 
         namespace.to(gameRoom).emit('startGame', 'let\'s start');
+
+        games.addNewGame(playerId, opponentId, gameRoom);
+
+        //TODO: start game from here
+        //TODO: pass playerId to game so that we can identify the worm
     });
 
 };

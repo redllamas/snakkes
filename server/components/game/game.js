@@ -1,10 +1,9 @@
 var Worm = require('../worm/worm');
 var Apple = require('../apple/apple');
 
-function Game(challenger, defender, gameRoomId) {
-    this.challenger = challenger; //worm index 0
-    this.defender   = defender; //worm index 1
+function Game(defender, challenger, gameRoomId) {
     this.gameRoomId = gameRoomId;
+    this.players    = [defender, challenger];
     this.worms      = [new Worm('steelblue', 4, true), new Worm('yellow', 4, false)];
     this.apple      = new Apple(this.getWormCoordinates());
 };

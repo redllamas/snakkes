@@ -4,7 +4,7 @@ angular
     .module('app.game-controller', [])
     .controller('GameController', GameController);
 
-GameController.$inject = ['socket', 'players', 'paint'];
+GameController.$inject = ['socket', 'players', 'paint', 'joystick'];
 
 function GameController(socket, players, paint) {
     var vm = this;

@@ -1,3 +1,4 @@
+var $ = require('jquery');
 require('angular');
 require('angular-route');
 require('./controllers/lobby-controller');
@@ -7,3 +8,4 @@ require('./components/websocket');
 require('./components/md5');
 require('./components/players');
 require('./components/paint');
+require('./components/joystick')($);
