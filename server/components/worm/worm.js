@@ -1,6 +1,6 @@
 var board = require('../board/board')();
 
-function Worm(color, length, challenger) {
+function Worm(color, length, defender) {
     this.ateApple = false;
     this.color = color;
     this.xSize = board.meta().pw;
@@ -12,7 +12,7 @@ function Worm(color, length, challenger) {
 
     function getInitialCoords(length) {
         var x = ((this.xBounds / 2) - ((length * this.xSize) / 2));
-        var y = challenger ? ((this.yBounds / 2) - ((length * this.ySize) / 2)) : ((this.yBounds / 2) + ((length * this.ySize) / 2));
+        var y = defender ? ((this.yBounds / 2) - ((length * this.ySize) / 2)) : ((this.yBounds / 2) + ((length * this.ySize) / 2));
         var coords = [];
 
         for(var i=0; i<length; i++) {
@@ -73,10 +73,10 @@ Worm.prototype.nextCoordinate = function () {
             if(nextCoordinate.y > 0) nextCoordinate.y -= this.ySize;
             break;
         case 'right':
-            if(nextCoordinate.x < this.xBounds) nextCoordinate.x += this.xSize;
+            if((nextCoordinate.x + this.xSize) < this.xBounds) nextCoordinate.x += this.xSize;
             break;
         case 'down':
-            if(nextCoordinate.y < this.yBounds) nextCoordinate.y += this.ySize;
+            if((nextCoordinate.y + this.ySize) < this.yBounds) nextCoordinate.y += this.ySize;
             break;
     }
     return nextCoordinate;
