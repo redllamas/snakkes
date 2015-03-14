@@ -8,8 +8,8 @@ socket.$inject = [];
 
 function socket() {
     var io = require('socket.io-client');
-    var lobby = io('http://localhost:3000/lobby');
-    var game  = io('http://localhost:3000/game');
+    var lobby = io('http://192.168.1.6:3000/lobby');
+    var game  = io('http://192.168.1.6:3000/game');
     var service = {
         on: on,
         emit: emit,
