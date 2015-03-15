@@ -9,7 +9,7 @@ module.exports = function (namespace, socket) {
         socket.broadcast.to(player).emit('challenge', ownPlayer);
 
         if(namespace.name === '/lobby') {
-            namespace.emit('players', players.list);
+            namespace.emit('gotPlayers', players.list);;
         }
     });
 };

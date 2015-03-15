@@ -7,47 +7,48 @@ angular
 socket.$inject = [];
 
 function socket() {
-    var io = require('socket.io-client');
-    var lobby = io('http://192.168.1.6:3000/lobby');
-    var game  = io('http://192.168.1.6:3000/game');
+    var io      = require('socket.io-client');
+    var host    = require('../../config/config')().websocket.host;
+    var root    = io(host);
+    var lobby   = io(host + '/lobby');
+    var game    = io(host + '/game');
     var service = {
-        on: on,
-        emit: emit,
-        gameEmit: gameEmit,
-        connect: connect,
-        gotChallenge: gotChallenge,
-        players: players,
-        gameMessage: gameMessage
+        emit: {
+            all: emitAll,
+            lobby: emitLobby,
+            game: emitGame
+        },
+        event: {
+            all: eventAll,
+            lobby: eventLobby,
+            game: eventGame
+        }
     };
     return service;
 
     ////////////
 
-    function on(event, callback) {
-        lobby.on(event, callback);
+    function emitAll(event, message) {
+        root.emit(event, message);
     };
 
-    function emit(event, message) {
+    function emitLobby(event, message) {
         lobby.emit(event, message);
     };
 
-    function gameEmit(event, message) {
+    function emitGame(event, message) {
         game.emit(event, message);
     };
 
-    function connect(callback) {
-        lobby.on('connect', callback);
+    function eventAll(event, callback) {
+        root.on(event, callback);
     };
 
-    function gotChallenge(callback) {
-        lobby.on('challenge', callback);
+    function eventLobby(event, callback) {
+        lobby.on(event, callback);
     };
 
-    function players(callback) {
-        lobby.on('players', callback);
-    };
-
-    function gameMessage(callback) {
-        game.on('message', callback);
+    function eventGame(event, callback) {
+        game.on(event, callback);
     };
 };

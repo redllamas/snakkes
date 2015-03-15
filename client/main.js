@@ -8,4 +8,5 @@ require('./components/websocket');
 require('./components/md5');
 require('./components/players');
 require('./components/paint');
+require('./components/chat');
 require('./components/joystick')($);

@@ -6,7 +6,7 @@ module.exports = function (namespace, socket) {
     //lobby events
     if(namespace.name === '/lobby') {
         players.add(clientId);
-        namespace.emit('players', players.list);
+        namespace.emit('gotPlayers', players.list);;
     }
 
 };

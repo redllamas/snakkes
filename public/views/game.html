@@ -1,6 +1,20 @@
-<div id="game">
-	game
-	<a href="/#/lobby">lobby</a>
-	<a href="/#/game">game</a>
-	<button ng-click="vm.sendMessage()">send message</button>
+<div>
+	<div id="game">
+
+	</div>
+	<div>
+		<button ng-click="vm.quitGame()">Quit game</button>
+	</div>
+	<div>
+		<h3>Player chat</h3>
+		<div class="chat-box">
+			<div class="scrollable">
+				<div ng-repeat="message in vm.chat.messages track by $index">
+					{{ message }}
+				</div>
+			</div>
+			<input type="text" ng-model="vm.chatMessage" />
+			<button ng-click="vm.sendMessage()">send</button>
+		</div>
+	</div>
 </div>

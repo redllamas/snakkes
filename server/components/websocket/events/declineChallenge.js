@@ -14,7 +14,7 @@ module.exports = function (namespace, socket) {
         socket.broadcast.to(opponentId).emit('declineChallenge', playerId);
 
         if(namespace.name === '/lobby') {
-            namespace.emit('players', players.list);
+            namespace.emit('gotPlayers', players.list);;
         }
 
     });

@@ -4,60 +4,62 @@ angular
     .module('app.lobby-controller', [])
     .controller('LobbyController', LobbyController);
 
-LobbyController.$inject = ['$scope', '$location', 'socket', 'md5', 'players'];
+LobbyController.$inject = ['$scope', '$location', 'socket', 'md5', 'players', 'chat'];
 
-function LobbyController($scope, $location, socket, md5, players) {
+function LobbyController($scope, $location, socket, md5, players, chat) {
     var vm = this;
 
-    vm.player = players.player;
-    vm.players = players.list;
-    vm.opponent = players.opponent;
-    vm.md5 = md5;
-    vm.updateInfo = updateInfo;
-    vm.challenge = challenge;
+    vm.md5         = md5;
+    vm.player      = players.player;
+    vm.players     = players.list;
+    vm.opponent    = players.opponent;
+    vm.chat        = chat;
+    vm.chatMessage = '';
+    vm.sendMessage = sendMessage;
+    vm.updateInfo  = updateInfo;
+    vm.challenge   = challenge;
     vm.declineChallenge = declineChallenge;
-    vm.acceptChallenge = acceptChallenge;
+    vm.acceptChallenge  = acceptChallenge;
 
     activate();
 
     ////////////
 
     function activate() {
+        socket.event.lobby('gotChatMessage', function (message) {
+            vm.chat.addMessage(message);
+            $scope.$apply();
+        });
 
-        socket.on('startGame', function () {
-            console.log('got startgame message');
+        socket.event.lobby('startGame', function () {
             $location.path('/game');
             $scope.$apply();
         });
 
-        socket.on('message', function (msg) {
-            console.log('got message: ' + msg);
-        });
-
-        socket.players(function () {
+        socket.event.lobby('gotPlayers', function () {
             $scope.$apply();
         });
+    };
 
-        socket.on('declineChallenge', function (data) {
-            console.log('declineChallenge');
-            console.log(data);
-        });
+    function sendMessage() {
+        socket.emit.lobby('chatMessage', vm.player.name + ': ' + vm.chatMessage);
+        vm.chatMessage = '';
     };
 
     function updateInfo() {
-        socket.emit('updatePlayer', vm.player);
+        socket.emit.lobby('updatePlayer', vm.player);
     };
 
     function challenge(playerId) {
-        socket.emit('challenge', playerId);
+        socket.emit.lobby('challenge', playerId);
     };
 
     function declineChallenge() {
-        socket.emit('declineChallenge', vm.opponent.id);
+        socket.emit.lobby('declineChallenge', vm.opponent.id);
     };
 
     function acceptChallenge() {
-        socket.emit('acceptChallenge', vm.opponent.id);
+        socket.emit.lobby('acceptChallenge', vm.opponent.id);
     };
 
 };

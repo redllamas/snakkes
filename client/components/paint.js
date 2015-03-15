@@ -23,8 +23,6 @@ function paint() {
     ////////////
 
     function paint() {
-        console.log('painting..');
-        console.log(w + ' ' + h);
         d3.select("#game").append("svg").attr("width", w).attr("height", h).append("g").attr("id", "board");
 
         ticksX.map(function (xTick) {

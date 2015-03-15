@@ -1,36 +1,53 @@
 <div>
-	lobby
-	<a href="/#/lobby">lobby</a>
-	<a href="/#/game">game</a>
-	<h3>Update your info</h3>
-	<div class="fill-in-info">
-		<label>name</label>
-		<input type="text" ng-model="vm.player.name" />
-		<label>gravatar compatible email</label>
-		<input type="text" ng-model="vm.player.email" />
-		<button ng-click="vm.updateInfo()">update</button>
-	</div>
-	<h3>Player list</h3>
-	<div class="player-list">
-		<div class="player" ng-repeat="player in vm.players" ng-class="{ active: player.id === vm.player.id }">
-			<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(player.email) }}" />
-			<div>name: {{ player.name }}</div>
-			<div>awaiting: {{ player.canChallenge }}</div>
-			<div>inGame: {{ player.inGame }}</div>
-			<button class="challenge" ng-show="player.id !== vm.player.id" ng-click="vm.challenge(player.id)">challenge</button>
+	<div ng-class="{ dimmed: ! vm.player.canChallenge }">
+		lobby
+		<a href="/#/lobby">lobby</a>
+		<a href="/#/game">game</a>
+		<h3>Update your info</h3>
+		<div class="fill-in-info">
+			<label>name</label>
+			<input type="text" ng-model="vm.player.name" />
+			<label>gravatar compatible email</label>
+			<input type="text" ng-model="vm.player.email" />
+			<button ng-click="vm.updateInfo()">update</button>
+		</div>
+		<h3>Player list</h3>
+		<div class="player-list">
+			<div class="player" ng-repeat="player in vm.players" ng-class="{ active: player.id === vm.player.id }">
+				<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(player.email) }}" />
+				<div class="name">{{ player.name }}</div>
+				<div class="status" ng-show=" ! player.canChallenge">{{ player.inGame ? 'currently playing' : 'challenging another player' }}</div>
+				<button class="challenge" ng-show="player.id !== vm.player.id" ng-disabled=" ! player.canChallenge || player.inGame" ng-click="vm.challenge(player.id)">challenge</button>
+			</div>
 		</div>
 	</div>
 	<div class="challenge-window" ng-show=" ! vm.player.canChallenge">
-		<h2 ng-show="vm.player.challenger">Waiting for response</h2>
-		<h2 ng-show="vm.player.defender">You've been challenged!</h2>
-		<div>Opponent:</div>
-		<div>
-			<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(vm.opponent.email) }}" />
-			<span>{{ vm.opponent.name }}</span>
+		<div ng-show="vm.player.challenger">
+			<h2>Waiting for response</h2>
 		</div>
 		<div ng-show="vm.player.defender">
-			<button ng-click="vm.declineChallenge()">decline</button>
-			<button ng-click="vm.acceptChallenge()">accept</button>
+			<h2>You've been challenged!</h2>
+			<div>Opponent:</div>
+			<div>
+				<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(vm.opponent.email) }}" />
+				<span>{{ vm.opponent.name }}</span>
+			</div>
+			<div>
+				<button ng-click="vm.acceptChallenge()">accept</button>
+				<button ng-click="vm.declineChallenge()">decline</button>
+			</div>
+		</div>
+	</div>
+	<div>
+		<h3>Player chat</h3>
+		<div class="chat-box">
+			<div class="scrollable">
+				<div ng-repeat="message in vm.chat.messages track by $index">
+					{{ message }}
+				</div>
+			</div>
+			<input type="text" ng-model="vm.chatMessage" />
+			<button ng-click="vm.sendMessage()">send</button>
 		</div>
 	</div>
 </div>

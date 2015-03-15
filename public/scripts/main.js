@@ -1,43 +1,70 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/oliver/Webroot/snakkes/client/components/joystick.js":[function(require,module,exports){
-module.exports = function($){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/oliver/Webroot/snakkes/client/components/chat.js":[function(require,module,exports){
 'use strict';
 
 angular
     .module('app')
-    .factory('joystick', joystick);
+    .factory('chat', chat);
 
-joystick.$inject = ['$document', 'players', 'socket'];
+chat.$inject = [];
 
-function joystick($document, players, socket) {
+function chat() {
+    var limit    = 2;
+    var messages = [];
+    var service  = {
+        limit: limit,
+        messages: messages,
+        addMessage: addMessage
+    };
+    return service;
 
-    $(document).keydown(function(e) {
-        switch(e.which) {
-            case 37: // left
-                console.log('left');
-                socket.gameEmit('direction', { direction: 'left', id: players.player.id });
-                break;
-            case 38: // up
-                console.log('up');
-                socket.gameEmit('direction', { direction: 'up', id: players.player.id });
-                break;
-            case 39: // right
-                console.log('right');
-                socket.gameEmit('direction', { direction: 'right', id: players.player.id });
-                break;
-            case 40: // down
-                console.log('down');
-                socket.gameEmit('direction', { direction: 'down', id: players.player.id });
-                break;
+    ////////////
 
-            default: return; // exit this handler for other keys
-        }
-        e.preventDefault(); // prevent the default action (scroll / move caret)
-    });
+    function addMessage(message) {
+        messages.splice(0, 0, message);
+    };
 
-    return {};
+};
 
-}
-}
+},{}],"/Users/oliver/Webroot/snakkes/client/components/joystick.js":[function(require,module,exports){
+module.exports = function($){
+    'use strict';
+
+    angular
+        .module('app')
+        .factory('joystick', joystick);
+
+    joystick.$inject = ['$document', 'players', 'socket'];
+
+    function joystick($document, players, socket) {
+
+        $(document).keydown(function(e) {
+            switch(e.which) {
+                case 37: // left
+                    console.log('left');
+                    socket.emit.game('direction', { direction: 'left', id: players.player.id });
+                    break;
+                case 38: // up
+                    console.log('up');
+                    socket.emit.game('direction', { direction: 'up', id: players.player.id });
+                    break;
+                case 39: // right
+                    console.log('right');
+                    socket.emit.game('direction', { direction: 'right', id: players.player.id });
+                    break;
+                case 40: // down
+                    console.log('down');
+                    socket.emit.game('direction', { direction: 'down', id: players.player.id });
+                    break;
+
+                default: return; // exit this handler for other keys
+            }
+            e.preventDefault(); // prevent the default action (scroll / move caret)
+        });
+
+        return {};
+
+    };
+};
 
 },{}],"/Users/oliver/Webroot/snakkes/client/components/md5.js":[function(require,module,exports){
 'use strict';
@@ -88,8 +115,6 @@ function paint() {
     ////////////
 
     function paint() {
-        console.log('painting..');
-        console.log(w + ' ' + h);
         d3.select("#game").append("svg").attr("width", w).attr("height", h).append("g").attr("id", "board");
 
         ticksX.map(function (xTick) {
@@ -121,27 +146,6 @@ function paint() {
             _this.attr('fill', fill);
         });
 
-        // var colors = [];
-        // colorMethods.forEach(function (colorObj) {
-        //     colors.push(colorObj.instance[colorObj.method](colorObj.attributes));
-        // });
-
-        // d3.selectAll('#board .pixies').each(function () {
-        //     var _this = d3.select(this);
-        //     var x = parseInt(_this.attr('x'), 10);
-        //     var y = parseInt(_this.attr('y'), 10);
-        //     var fill = "black";
-
-        //     //check if we should color the current pixel
-        //     colors.forEach(function (color) {
-        //         var colorname = Object.keys(color)[0];
-        //         color[colorname].forEach(function (colorCoords) {
-        //             if(colorCoords.x === x && colorCoords.y === y) fill = colorname;
-        //         });
-        //     });
-
-        //     _this.attr('fill', fill);
-        // });
     };
 };
 
@@ -157,9 +161,9 @@ players.$inject = ['socket'];
 function players(socket) {
 
     //websocket events
-    socket.connect(setPlayerId);
-    socket.gotChallenge(updateOpponent);
-    socket.players(updatePlayers);
+    socket.event.lobby('connect',   setPlayerId);
+    socket.event.lobby('challenge', updateOpponent);
+    socket.event.lobby('gotPlayers',   updatePlayers);
 
     var list = [];
     var player = {};
@@ -180,6 +184,7 @@ function players(socket) {
     function updateOpponent(opponentId) {
         list.forEach(function (player) {
             if(player.id === opponentId) {
+                console.log('found match');
                 for (var key in player) opponent[key] = player[key];
             }
         });
@@ -206,66 +211,70 @@ angular
 socket.$inject = [];
 
 function socket() {
-    var io = require('socket.io-client');
-    var lobby = io('http://192.168.1.6:3000/lobby');
-    var game  = io('http://192.168.1.6:3000/game');
+    var io      = require('socket.io-client');
+    var host    = require('../../config/config')().websocket.host;
+    var root    = io(host);
+    var lobby   = io(host + '/lobby');
+    var game    = io(host + '/game');
     var service = {
-        on: on,
-        emit: emit,
-        gameEmit: gameEmit,
-        connect: connect,
-        gotChallenge: gotChallenge,
-        players: players,
-        gameMessage: gameMessage
+        emit: {
+            all: emitAll,
+            lobby: emitLobby,
+            game: emitGame
+        },
+        event: {
+            all: eventAll,
+            lobby: eventLobby,
+            game: eventGame
+        }
     };
     return service;
 
     ////////////
 
-    function on(event, callback) {
-        lobby.on(event, callback);
+    function emitAll(event, message) {
+        root.emit(event, message);
     };
 
-    function emit(event, message) {
+    function emitLobby(event, message) {
         lobby.emit(event, message);
     };
 
-    function gameEmit(event, message) {
+    function emitGame(event, message) {
         game.emit(event, message);
     };
 
-    function connect(callback) {
-        lobby.on('connect', callback);
+    function eventAll(event, callback) {
+        root.on(event, callback);
     };
 
-    function gotChallenge(callback) {
-        lobby.on('challenge', callback);
+    function eventLobby(event, callback) {
+        lobby.on(event, callback);
     };
 
-    function players(callback) {
-        lobby.on('players', callback);
-    };
-
-    function gameMessage(callback) {
-        game.on('message', callback);
+    function eventGame(event, callback) {
+        game.on(event, callback);
     };
 };
 
-},{"socket.io-client":"/Users/oliver/Webroot/snakkes/node_modules/socket.io-client/index.js"}],"/Users/oliver/Webroot/snakkes/client/controllers/game-controller.js":[function(require,module,exports){
+},{"../../config/config":"/Users/oliver/Webroot/snakkes/config/config.js","socket.io-client":"/Users/oliver/Webroot/snakkes/node_modules/socket.io-client/index.js"}],"/Users/oliver/Webroot/snakkes/client/controllers/game-controller.js":[function(require,module,exports){
 'use strict';
 
 angular
     .module('app.game-controller', [])
     .controller('GameController', GameController);
 
-GameController.$inject = ['socket', 'players', 'paint', 'joystick'];
+GameController.$inject = ['$scope', '$location', 'socket', 'players', 'paint', 'chat', 'joystick'];
 
-function GameController(socket, players, paint) {
+function GameController($scope, $location, socket, players, paint, chat, joystick) {
     var vm = this;
 
-    vm.player = players.player;
-    vm.players = players.players;
-    vm.opponent = players.opponent;
+    vm.player      = players.player;
+    vm.players     = players.list;
+    vm.opponent    = players.opponent;
+    vm.chat        = chat;
+    vm.chatMessage = '';
+    vm.quitGame    = quitGame;
     vm.sendMessage = sendMessage;
 
     activate();
@@ -275,21 +284,46 @@ function GameController(socket, players, paint) {
     function activate() {
         paint.paint();
 
-        // console.log('game controller...');
-
-        // socket.connect(function () {
-        //     console.log('connecting game controller...');
-        // });
-
-        socket.gameMessage(function (colors) {
+        socket.event.game('message', function (colors) {
             paint.repaint(colors);
+        });
+
+        socket.event.lobby('gotChatMessage', function (message) {
+            vm.chat.addMessage(message);
+            $scope.$apply();
+        });
+
+        socket.event.all('gotQuitGame', function () {
+            console.log('event all');
+            console.log('got quit game');
+            //$location.path('/lobby');
+            //$scope.$apply();
+        });
+
+        socket.event.lobby('gotQuitGame', function () {
+            console.log('event lobby');
+            console.log('got quit game');
+            //$location.path('/lobby');
+            //$scope.$apply();
+        });
+
+        socket.event.game('gotQuitGame', function () {
+            console.log('event game');
+            console.log('got quit game');
+            //$location.path('/lobby');
+            //$scope.$apply();
         });
     };
 
-    function sendMessage() {
-    //     socket.gameEmit('message', 'hi there!');
+    function quitGame() {
+        console.log('sending');
+        socket.emit.game('quitGame', vm.player.gameRoom);
     };
 
+    function sendMessage() {
+        socket.emit.lobby('chatMessage', vm.player.name + ': ' + vm.chatMessage);
+        vm.chatMessage = '';
+    };
 };
 
 },{}],"/Users/oliver/Webroot/snakkes/client/controllers/lobby-controller.js":[function(require,module,exports){
@@ -299,60 +333,62 @@ angular
     .module('app.lobby-controller', [])
     .controller('LobbyController', LobbyController);
 
-LobbyController.$inject = ['$scope', '$location', 'socket', 'md5', 'players'];
+LobbyController.$inject = ['$scope', '$location', 'socket', 'md5', 'players', 'chat'];
 
-function LobbyController($scope, $location, socket, md5, players) {
+function LobbyController($scope, $location, socket, md5, players, chat) {
     var vm = this;
 
-    vm.player = players.player;
-    vm.players = players.list;
-    vm.opponent = players.opponent;
-    vm.md5 = md5;
-    vm.updateInfo = updateInfo;
-    vm.challenge = challenge;
+    vm.md5         = md5;
+    vm.player      = players.player;
+    vm.players     = players.list;
+    vm.opponent    = players.opponent;
+    vm.chat        = chat;
+    vm.chatMessage = '';
+    vm.sendMessage = sendMessage;
+    vm.updateInfo  = updateInfo;
+    vm.challenge   = challenge;
     vm.declineChallenge = declineChallenge;
-    vm.acceptChallenge = acceptChallenge;
+    vm.acceptChallenge  = acceptChallenge;
 
     activate();
 
     ////////////
 
     function activate() {
+        socket.event.lobby('gotChatMessage', function (message) {
+            vm.chat.addMessage(message);
+            $scope.$apply();
+        });
 
-        socket.on('startGame', function () {
-            console.log('got startgame message');
+        socket.event.lobby('startGame', function () {
             $location.path('/game');
             $scope.$apply();
         });
 
-        socket.on('message', function (msg) {
-            console.log('got message: ' + msg);
-        });
-
-        socket.players(function () {
+        socket.event.lobby('gotPlayers', function () {
             $scope.$apply();
         });
+    };
 
-        socket.on('declineChallenge', function (data) {
-            console.log('declineChallenge');
-            console.log(data);
-        });
+    function sendMessage() {
+        socket.emit.lobby('chatMessage', vm.player.name + ': ' + vm.chatMessage);
+        vm.chatMessage = '';
     };
 
     function updateInfo() {
-        socket.emit('updatePlayer', vm.player);
+        socket.emit.lobby('updatePlayer', vm.player);
     };
 
     function challenge(playerId) {
-        socket.emit('challenge', playerId);
+        socket.emit.lobby('challenge', playerId);
     };
 
     function declineChallenge() {
-        socket.emit('declineChallenge', vm.opponent.id);
+        socket.emit.lobby('declineChallenge', vm.opponent.id);
     };
 
     function acceptChallenge() {
-        socket.emit('acceptChallenge', vm.opponent.id);
+        socket.emit.lobby('acceptChallenge', vm.opponent.id);
     };
 
 };
@@ -368,9 +404,10 @@ require('./components/websocket');
 require('./components/md5');
 require('./components/players');
 require('./components/paint');
+require('./components/chat');
 require('./components/joystick')($);
 
-},{"./components/joystick":"/Users/oliver/Webroot/snakkes/client/components/joystick.js","./components/md5":"/Users/oliver/Webroot/snakkes/client/components/md5.js","./components/paint":"/Users/oliver/Webroot/snakkes/client/components/paint.js","./components/players":"/Users/oliver/Webroot/snakkes/client/components/players.js","./components/websocket":"/Users/oliver/Webroot/snakkes/client/components/websocket.js","./controllers/game-controller":"/Users/oliver/Webroot/snakkes/client/controllers/game-controller.js","./controllers/lobby-controller":"/Users/oliver/Webroot/snakkes/client/controllers/lobby-controller.js","./routes":"/Users/oliver/Webroot/snakkes/client/routes.js","angular":"/Users/oliver/Webroot/snakkes/node_modules/angular/angular.js","angular-route":"/Users/oliver/Webroot/snakkes/node_modules/angular-route/angular-route.js","jquery":"/Users/oliver/Webroot/snakkes/node_modules/jquery/dist/jquery.js"}],"/Users/oliver/Webroot/snakkes/client/routes.js":[function(require,module,exports){
+},{"./components/chat":"/Users/oliver/Webroot/snakkes/client/components/chat.js","./components/joystick":"/Users/oliver/Webroot/snakkes/client/components/joystick.js","./components/md5":"/Users/oliver/Webroot/snakkes/client/components/md5.js","./components/paint":"/Users/oliver/Webroot/snakkes/client/components/paint.js","./components/players":"/Users/oliver/Webroot/snakkes/client/components/players.js","./components/websocket":"/Users/oliver/Webroot/snakkes/client/components/websocket.js","./controllers/game-controller":"/Users/oliver/Webroot/snakkes/client/controllers/game-controller.js","./controllers/lobby-controller":"/Users/oliver/Webroot/snakkes/client/controllers/lobby-controller.js","./routes":"/Users/oliver/Webroot/snakkes/client/routes.js","angular":"/Users/oliver/Webroot/snakkes/node_modules/angular/angular.js","angular-route":"/Users/oliver/Webroot/snakkes/node_modules/angular-route/angular-route.js","jquery":"/Users/oliver/Webroot/snakkes/node_modules/jquery/dist/jquery.js"}],"/Users/oliver/Webroot/snakkes/client/routes.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -403,6 +440,22 @@ angular
                 redirectTo: '/lobby'
             });
     };
+
+},{}],"/Users/oliver/Webroot/snakkes/config/config.js":[function(require,module,exports){
+module.exports = function (process) {
+    return {
+        express: {
+            ip: "0.0.0.0",
+            port: (process && process.env.PORT || 3000)
+        },
+        websocket: {
+            host: "http://192.168.1.6:3000"
+        },
+        store: {
+            ip: "192.168.100.111"
+        }
+    };
+};
 
 },{}],"/Users/oliver/Webroot/snakkes/node_modules/angular-route/angular-route.js":[function(require,module,exports){
 /**

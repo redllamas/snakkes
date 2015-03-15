@@ -11,8 +11,20 @@ module.exports.addNewGame = function(defender, challenger, gameRoomId) {
     games.push(new Game(defender, challenger, gameRoomId));
 };
 
-module.exports.removeGame = function (gameRoomIndex) {
-    games.push(new Game(defender, challenger, gameRoomId));
+module.exports.removeGame = function (gameRoomId) {
+    var gameRoomIndex;
+
+    games.forEach(function (game, index) {
+        if(game.gameRoomId === gameRoomId) gameRoomIndex = index;
+    });
+
+    games.splice(gameRoomIndex, 1);
+};
+
+module.exports.findGame = function (gameRoomId) {
+    return games.filter(function (game) {
+        return game.gameRoomId === gameRoomId;
+    }).shift();
 };
 
 module.exports.getWormInstance = function (playerId) {
