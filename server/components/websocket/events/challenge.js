@@ -6,10 +6,10 @@ module.exports = function (namespace, socket) {
         var ownPlayer = socket.client.id;
         players.find(player).gotChallenge();
         players.find(ownPlayer).awaitResponse();
-        socket.broadcast.to(player).emit('challenge', ownPlayer);
+        socket.broadcast.to(player).emit('gotChallenge', ownPlayer);
 
         if(namespace.name === '/lobby') {
-            namespace.emit('gotPlayers', players.list);;
+            namespace.emit('gotPlayers', players.list);
         }
     });
 };

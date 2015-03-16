@@ -6,7 +6,8 @@ module.exports = [
     require('./declineChallenge'),
     require('./direction'),
     require('./disconnect'),
-    require('./message'),
+    require('./joinGame'),
     require('./quitGame'),
+    require('./refreshPlayers'),
     require('./updatePlayer')
 ];

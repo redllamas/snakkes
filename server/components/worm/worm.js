@@ -56,12 +56,6 @@ Worm.prototype.moveToCoordinate = function (coordinate) {
     this.ateApple = false;
 };
 
-// Worm.prototype.getCoordinatesWithColor = function () {
-//     var obj = {};
-//     obj[this.color] = this.getCoordinates();
-//     return obj;
-// };
-
 Worm.prototype.nextCoordinate = function () {
     var currentCoordinate = this.currentCoordinate();
     var nextCoordinate    = { x: currentCoordinate.x, y: currentCoordinate.y };

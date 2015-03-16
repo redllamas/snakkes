@@ -17,8 +17,11 @@ Player.prototype.update = function (player) {
 
 Player.prototype.finishGame = function (roomId) {
     this.canChallenge = true;
+    this.challenger = false;
+    this.defender = false;
     this.inGame = false;
     this.gameRoom = '';
+    this.score = 0;
     return this;
 };
 
@@ -49,7 +52,6 @@ Player.prototype.declineChallenge = function () {
 
 Player.prototype.acceptChallenge = function () {
     this.inGame = true;
-    this.gameRoom = '';
     return this;
 };
 

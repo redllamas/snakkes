@@ -13,36 +13,20 @@ module.exports = function (namespace, socket) {
         var player = players.find(playerId);
         if(player) player.acceptChallenge().setRoomId(gameRoom);
 
-        namespace.to(playerId).emit('acceptChallenge', opponentId);
-        socket.broadcast.to(opponentId).emit('acceptChallenge', playerId);
-
-        socket.join(gameRoom);
-        namespace.sockets.forEach(function (_socket) {
-            console.log(_socket.id + ' ' + opponentId);
-            if(_socket.id === opponentId) {
-                _socket.join(gameRoom);
-            }
-        });
-
-        console.log('rooms--------------');
-        console.log('-------------------');
-        var rooms = Object.keys(namespace.adapter.rooms);
-        console.log(rooms);
-        console.log('-------------------');
-
-        //test message
-        namespace.to(gameRoom).emit('message', 'message to: '+gameRoom);
-
+        //refresh player data
         if(namespace.name === '/lobby') {
-            namespace.emit('gotPlayers', players.list);;
+            namespace.emit('gotPlayers', players.list);
         }
 
-        namespace.to(gameRoom).emit('startGame', 'let\'s start');
+        namespace.to(playerId).emit('gotAcceptChallenge', opponentId);
+        socket.broadcast.to(opponentId).emit('gotAcceptChallenge', playerId);
 
         games.addNewGame(playerId, opponentId, gameRoom);
 
-        //TODO: start game from here
-        //TODO: pass playerId to game so that we can identify the worm
+        // if(namespace.name === '/lobby') {
+        //     namespace.emit('gotPlayers', players.list);
+        // }
+
     });
 
 };

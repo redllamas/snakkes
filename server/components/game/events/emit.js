@@ -17,8 +17,9 @@ module.exports = function (game) {
             });
         });
 
-        // console.log('sending: ' + JSON.stringify(game));
-        sockets[1].emit('message', colors);
+        //shorthand for:
+        //socket.of('/game').to(game.gameRoomId).emit('message', colors);
+        sockets[1].to(game.gameRoomId).emit('gotGameData', colors);
     });
 
 };

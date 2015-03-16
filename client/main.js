@@ -2,7 +2,7 @@ var $ = require('jquery');
 require('angular');
 require('angular-route');
 require('./controllers/lobby-controller');
-require('./controllers/game-controller');
+require('./controllers/game-controller')($);
 require('./routes');
 require('./components/websocket');
 require('./components/md5');

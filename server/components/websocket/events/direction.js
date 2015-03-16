@@ -1,4 +1,3 @@
-var players = require('../../player/players');
 var games   = require('../../game/games');
 
 module.exports = function (namespace, socket) {

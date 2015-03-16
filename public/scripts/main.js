@@ -26,7 +26,7 @@ function chat() {
 };
 
 },{}],"/Users/oliver/Webroot/snakkes/client/components/joystick.js":[function(require,module,exports){
-module.exports = function($){
+module.exports = function($) {
     'use strict';
 
     angular
@@ -40,19 +40,15 @@ module.exports = function($){
         $(document).keydown(function(e) {
             switch(e.which) {
                 case 37: // left
-                    console.log('left');
                     socket.emit.game('direction', { direction: 'left', id: players.player.id });
                     break;
                 case 38: // up
-                    console.log('up');
                     socket.emit.game('direction', { direction: 'up', id: players.player.id });
                     break;
                 case 39: // right
-                    console.log('right');
                     socket.emit.game('direction', { direction: 'right', id: players.player.id });
                     break;
                 case 40: // down
-                    console.log('down');
                     socket.emit.game('direction', { direction: 'down', id: players.player.id });
                     break;
 
@@ -161,8 +157,8 @@ players.$inject = ['socket'];
 function players(socket) {
 
     //websocket events
-    socket.event.lobby('connect',   setPlayerId);
-    socket.event.lobby('challenge', updateOpponent);
+    socket.event.lobby('connect',      setPlayerId);
+    socket.event.lobby('gotChallenge', updateOpponent);
     socket.event.lobby('gotPlayers',   updatePlayers);
 
     var list = [];
@@ -184,7 +180,6 @@ function players(socket) {
     function updateOpponent(opponentId) {
         list.forEach(function (player) {
             if(player.id === opponentId) {
-                console.log('found match');
                 for (var key in player) opponent[key] = player[key];
             }
         });
@@ -213,17 +208,14 @@ socket.$inject = [];
 function socket() {
     var io      = require('socket.io-client');
     var host    = require('../../config/config')().websocket.host;
-    var root    = io(host);
     var lobby   = io(host + '/lobby');
     var game    = io(host + '/game');
     var service = {
         emit: {
-            all: emitAll,
             lobby: emitLobby,
             game: emitGame
         },
         event: {
-            all: eventAll,
             lobby: eventLobby,
             game: eventGame
         }
@@ -231,10 +223,6 @@ function socket() {
     return service;
 
     ////////////
-
-    function emitAll(event, message) {
-        root.emit(event, message);
-    };
 
     function emitLobby(event, message) {
         lobby.emit(event, message);
@@ -244,87 +232,83 @@ function socket() {
         game.emit(event, message);
     };
 
-    function eventAll(event, callback) {
-        root.on(event, callback);
-    };
-
     function eventLobby(event, callback) {
+        // lobby.removeAllListeners([event]);
+        lobby.removeListener(event, callback);
         lobby.on(event, callback);
     };
 
     function eventGame(event, callback) {
+        // game.removeAllListeners([event]);
+        game.removeListener(event, callback);
         game.on(event, callback);
     };
 };
 
 },{"../../config/config":"/Users/oliver/Webroot/snakkes/config/config.js","socket.io-client":"/Users/oliver/Webroot/snakkes/node_modules/socket.io-client/index.js"}],"/Users/oliver/Webroot/snakkes/client/controllers/game-controller.js":[function(require,module,exports){
-'use strict';
+module.exports = function($) {
+    'use strict';
 
-angular
-    .module('app.game-controller', [])
-    .controller('GameController', GameController);
+    angular
+        .module('app.game-controller', [])
+        .controller('GameController', GameController);
 
-GameController.$inject = ['$scope', '$location', 'socket', 'players', 'paint', 'chat', 'joystick'];
+    GameController.$inject = ['$scope', '$location', 'socket', 'players', 'paint', 'chat', 'joystick'];
 
-function GameController($scope, $location, socket, players, paint, chat, joystick) {
-    var vm = this;
+    function GameController($scope, $location, socket, players, paint, chat, joystick) {
+        var vm = this;
 
-    vm.player      = players.player;
-    vm.players     = players.list;
-    vm.opponent    = players.opponent;
-    vm.chat        = chat;
-    vm.chatMessage = '';
-    vm.quitGame    = quitGame;
-    vm.sendMessage = sendMessage;
-
-    activate();
-
-    ////////////
-
-    function activate() {
-        paint.paint();
-
-        socket.event.game('message', function (colors) {
-            paint.repaint(colors);
-        });
-
-        socket.event.lobby('gotChatMessage', function (message) {
-            vm.chat.addMessage(message);
-            $scope.$apply();
-        });
-
-        socket.event.all('gotQuitGame', function () {
-            console.log('event all');
-            console.log('got quit game');
-            //$location.path('/lobby');
-            //$scope.$apply();
-        });
-
-        socket.event.lobby('gotQuitGame', function () {
-            console.log('event lobby');
-            console.log('got quit game');
-            //$location.path('/lobby');
-            //$scope.$apply();
-        });
-
-        socket.event.game('gotQuitGame', function () {
-            console.log('event game');
-            console.log('got quit game');
-            //$location.path('/lobby');
-            //$scope.$apply();
-        });
-    };
-
-    function quitGame() {
-        console.log('sending');
-        socket.emit.game('quitGame', vm.player.gameRoom);
-    };
-
-    function sendMessage() {
-        socket.emit.lobby('chatMessage', vm.player.name + ': ' + vm.chatMessage);
+        vm.player      = players.player;
+        vm.players     = players.list;
+        vm.opponent    = players.opponent;
+        vm.chat        = chat;
         vm.chatMessage = '';
+        vm.quitGame    = quitGame;
+        vm.sendMessage = sendMessage;
+
+        activate();
+
+        ////////////
+
+        function activate() {
+
+            //scroll to top
+            $(window).scrollTop();
+
+            //initialize board
+            paint.paint();
+
+            //join game room to start receiving game events
+            socket.emit.game('joinGame', vm.player.gameRoom);
+
+            console.log(vm.player.gameRoom);
+
+            socket.event.game('gotGameData', function (data) {
+                paint.repaint(data);
+            });
+
+            socket.event.lobby('gotChatMessage', function (message) {
+                vm.chat.addMessage(message);
+                $scope.$apply();
+            });
+
+            socket.event.game('gotQuitGame', function () {
+                $location.path('/lobby');
+                $scope.$apply();
+            });
+        };
+
+        function quitGame() {
+            socket.emit.game('quitGame', vm.player.gameRoom);
+        };
+
+        function sendMessage() {
+            socket.emit.lobby('chatMessage', vm.player.name + ': ' + vm.chatMessage);
+            vm.chatMessage = '';
+        };
     };
-};
+
+}
 
 },{}],"/Users/oliver/Webroot/snakkes/client/controllers/lobby-controller.js":[function(require,module,exports){
 'use strict';
@@ -355,12 +339,14 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
     ////////////
 
     function activate() {
+        socket.emit.lobby('refreshPlayers');
+
         socket.event.lobby('gotChatMessage', function (message) {
             vm.chat.addMessage(message);
             $scope.$apply();
         });
 
-        socket.event.lobby('startGame', function () {
+        socket.event.lobby('gotAcceptChallenge', function (message) {
             $location.path('/game');
             $scope.$apply();
         });
@@ -398,7 +384,7 @@ var $ = require('jquery');
 require('angular');
 require('angular-route');
 require('./controllers/lobby-controller');
-require('./controllers/game-controller');
+require('./controllers/game-controller')($);
 require('./routes');
 require('./components/websocket');
 require('./components/md5');

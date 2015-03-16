@@ -9,8 +9,8 @@ players.$inject = ['socket'];
 function players(socket) {
 
     //websocket events
-    socket.event.lobby('connect',   setPlayerId);
-    socket.event.lobby('challenge', updateOpponent);
+    socket.event.lobby('connect',      setPlayerId);
+    socket.event.lobby('gotChallenge', updateOpponent);
     socket.event.lobby('gotPlayers',   updatePlayers);
 
     var list = [];
@@ -32,7 +32,6 @@ function players(socket) {
     function updateOpponent(opponentId) {
         list.forEach(function (player) {
             if(player.id === opponentId) {
-                console.log('found match');
                 for (var key in player) opponent[key] = player[key];
             }
         });

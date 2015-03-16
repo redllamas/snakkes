@@ -11,10 +11,10 @@ module.exports = function (namespace, socket) {
         var player = players.find(playerId);
         if(player) player.declineChallenge();
 
-        socket.broadcast.to(opponentId).emit('declineChallenge', playerId);
+        //socket.broadcast.to(opponentId).emit('declineChallenge', playerId);
 
         if(namespace.name === '/lobby') {
-            namespace.emit('gotPlayers', players.list);;
+            namespace.emit('gotPlayers', players.list);
         }
 
     });

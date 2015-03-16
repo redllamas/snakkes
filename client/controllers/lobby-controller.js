@@ -26,12 +26,14 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
     ////////////
 
     function activate() {
+        socket.emit.lobby('refreshPlayers');
+
         socket.event.lobby('gotChatMessage', function (message) {
             vm.chat.addMessage(message);
             $scope.$apply();
         });
 
-        socket.event.lobby('startGame', function () {
+        socket.event.lobby('gotAcceptChallenge', function (message) {
             $location.path('/game');
             $scope.$apply();
         });

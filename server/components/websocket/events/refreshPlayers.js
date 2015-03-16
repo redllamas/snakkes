@@ -1,13 +1,12 @@
 var players = require('../../player/players');
 
 module.exports = function (namespace, socket) {
-    socket.on('disconnect', function () {
-        var clientId  = socket.client.id;
 
-        //lobby events
+    socket.on('refreshPlayers', function () {
+
         if(namespace.name === '/lobby') {
-            players.remove(clientId);
             namespace.emit('gotPlayers', players.list);
         }
+
     });
 };
