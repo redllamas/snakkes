@@ -217,7 +217,11 @@ function socket() {
         },
         event: {
             lobby: eventLobby,
-            game: eventGame
+            game: eventGame,
+            remove: {
+                lobby: removeEventLobby,
+                game: removeEventGame
+            }
         }
     };
     return service;
@@ -233,15 +237,19 @@ function socket() {
     };
 
     function eventLobby(event, callback) {
-        // lobby.removeAllListeners([event]);
-        lobby.removeListener(event, callback);
         lobby.on(event, callback);
     };
 
     function eventGame(event, callback) {
-        // game.removeAllListeners([event]);
-        game.removeListener(event, callback);
         game.on(event, callback);
+    };
+
+    function removeEventLobby(event, callback) {
+        lobby.removeListener(event, callback);
+    };
+
+    function removeEventGame(event, callback) {
+        game.removeListener(event, callback);
     };
 };
 
@@ -287,16 +295,19 @@ module.exports = function($) {
                 paint.repaint(data);
             });
 
-            socket.event.lobby('gotChatMessage', function (message) {
-                vm.chat.addMessage(message);
-                $scope.$apply();
-            });
+            // socket.event.remove.lobby('gotChatMessage', gotChatMessage);
+            // socket.event.lobby('gotChatMessage', gotChatMessage);
 
             socket.event.game('gotQuitGame', function () {
                 $location.path('/lobby');
                 $scope.$apply();
             });
         };
+
+        // function gotChatMessage(message) {
+        //     vm.chat.addMessage(message);
+        //     $scope.$apply();
+        // };
 
         function quitGame() {
             socket.emit.game('quitGame', vm.player.gameRoom);
@@ -339,12 +350,18 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
     ////////////
 
     function activate() {
+        $scope.$on('$destroy', function (event) {
+            socket.event.remove.lobby('gotChatMessage', gotChatMessage);
+            // socket.event.remove.all();
+            //socket.removeAllListeners();
+            // or something like
+            // socket.removeListener(this);
+        });
+
         socket.emit.lobby('refreshPlayers');
 
-        socket.event.lobby('gotChatMessage', function (message) {
-            vm.chat.addMessage(message);
-            $scope.$apply();
-        });
+
+        socket.event.lobby('gotChatMessage', gotChatMessage);
 
         socket.event.lobby('gotAcceptChallenge', function (message) {
             $location.path('/game');
@@ -354,6 +371,11 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
         socket.event.lobby('gotPlayers', function () {
             $scope.$apply();
         });
+    };
+
+    function gotChatMessage(message) {
+        vm.chat.addMessage(message);
+        $scope.$apply();
     };
 
     function sendMessage() {

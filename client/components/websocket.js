@@ -18,7 +18,11 @@ function socket() {
         },
         event: {
             lobby: eventLobby,
-            game: eventGame
+            game: eventGame,
+            remove: {
+                lobby: removeEventLobby,
+                game: removeEventGame
+            }
         }
     };
     return service;
@@ -34,14 +38,18 @@ function socket() {
     };
 
     function eventLobby(event, callback) {
-        // lobby.removeAllListeners([event]);
-        lobby.removeListener(event, callback);
         lobby.on(event, callback);
     };
 
     function eventGame(event, callback) {
-        // game.removeAllListeners([event]);
-        game.removeListener(event, callback);
         game.on(event, callback);
+    };
+
+    function removeEventLobby(event, callback) {
+        lobby.removeListener(event, callback);
+    };
+
+    function removeEventGame(event, callback) {
+        game.removeListener(event, callback);
     };
 };

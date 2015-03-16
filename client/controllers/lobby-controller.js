@@ -26,12 +26,18 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
     ////////////
 
     function activate() {
+        $scope.$on('$destroy', function (event) {
+            socket.event.remove.lobby('gotChatMessage', gotChatMessage);
+            // socket.event.remove.all();
+            //socket.removeAllListeners();
+            // or something like
+            // socket.removeListener(this);
+        });
+
         socket.emit.lobby('refreshPlayers');
 
-        socket.event.lobby('gotChatMessage', function (message) {
-            vm.chat.addMessage(message);
-            $scope.$apply();
-        });
+
+        socket.event.lobby('gotChatMessage', gotChatMessage);
 
         socket.event.lobby('gotAcceptChallenge', function (message) {
             $location.path('/game');
@@ -41,6 +47,11 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
         socket.event.lobby('gotPlayers', function () {
             $scope.$apply();
         });
+    };
+
+    function gotChatMessage(message) {
+        vm.chat.addMessage(message);
+        $scope.$apply();
     };
 
     function sendMessage() {

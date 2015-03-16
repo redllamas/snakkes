@@ -39,16 +39,19 @@ module.exports = function($) {
                 paint.repaint(data);
             });
 
-            socket.event.lobby('gotChatMessage', function (message) {
-                vm.chat.addMessage(message);
-                $scope.$apply();
-            });
+            // socket.event.remove.lobby('gotChatMessage', gotChatMessage);
+            // socket.event.lobby('gotChatMessage', gotChatMessage);
 
             socket.event.game('gotQuitGame', function () {
                 $location.path('/lobby');
                 $scope.$apply();
             });
         };
+
+        // function gotChatMessage(message) {
+        //     vm.chat.addMessage(message);
+        //     $scope.$apply();
+        // };
 
         function quitGame() {
             socket.emit.game('quitGame', vm.player.gameRoom);
