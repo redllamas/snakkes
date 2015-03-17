@@ -14,7 +14,7 @@
 		<h3>Player list</h3>
 		<div class="player-list">
 			<div class="player" ng-repeat="player in vm.players" ng-class="{ active: player.id === vm.player.id }">
-				<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(player.email) }}" />
+				<img ng-src="https://www.gravatar.com/avatar/{{ vm.md5.hash(player.email) }}" />
 				<div class="name">{{ player.name }}</div>
 				<div class="status" ng-show=" ! player.canChallenge">{{ player.inGame ? 'currently playing' : 'challenging another player' }}</div>
 				<button class="challenge" ng-show="player.id !== vm.player.id" ng-disabled=" ! player.canChallenge || player.inGame" ng-click="vm.challenge(player.id)">challenge</button>
@@ -29,7 +29,7 @@
 			<h2>You've been challenged!</h2>
 			<div>Opponent:</div>
 			<div class="opponent">
-				<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(vm.opponent.email) }}" />
+				<img ng-src="https://www.gravatar.com/avatar/{{ vm.md5.hash(vm.opponent.email) }}" />
 				<span>{{ vm.opponent.name }}</span>
 			</div>
 			<div>
