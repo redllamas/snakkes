@@ -1,7 +1,6 @@
 var games  = require('./games');
 var events = require('./events');
 var fps       = (1000/30); //30fps
-// var fps         = (1000/15);
 var timer       = null;
 
 module.exports = function () {
