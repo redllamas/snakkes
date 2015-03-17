@@ -5,7 +5,7 @@ module.exports = function (process) {
             port: (process && process.env.PORT || 3000)
         },
         websocket: {
-            host: "http://192.168.1.30:3000"
+            host: "https://desolate-plains-6714.herokuapp.com"
         },
         store: {
             ip: "192.168.100.111"
