@@ -5,7 +5,7 @@ module.exports = function (process) {
             port: (process && process.env.PORT || 3000)
         },
         websocket: {
-            host: "http://192.168.1.6:3000"
+            host: "http://192.168.1.30:3000"
         },
         store: {
             ip: "192.168.100.111"

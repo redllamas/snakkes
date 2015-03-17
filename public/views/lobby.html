@@ -28,13 +28,13 @@
 		<div ng-show="vm.player.defender">
 			<h2>You've been challenged!</h2>
 			<div>Opponent:</div>
-			<div>
+			<div class="opponent">
 				<img ng-src="http://www.gravatar.com/avatar/{{ vm.md5.hash(vm.opponent.email) }}" />
 				<span>{{ vm.opponent.name }}</span>
 			</div>
 			<div>
-				<button ng-click="vm.acceptChallenge()">accept</button>
-				<button ng-click="vm.declineChallenge()">decline</button>
+				<button class="accept" ng-click="vm.acceptChallenge()">accept</button>
+				<button class="decline" ng-click="vm.declineChallenge()">decline</button>
 			</div>
 		</div>
 	</div>

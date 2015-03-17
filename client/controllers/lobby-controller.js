@@ -28,29 +28,27 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
     function activate() {
         $scope.$on('$destroy', function (event) {
             socket.event.remove.lobby('gotChatMessage', gotChatMessage);
-            // socket.event.remove.all();
-            //socket.removeAllListeners();
-            // or something like
-            // socket.removeListener(this);
+            socket.event.remove.lobby('gotAcceptChallenge', gotAcceptChallenge);
+            socket.event.remove.lobby('gotPlayers', gotPlayers);
         });
+        socket.event.lobby('gotChatMessage', gotChatMessage);
+        socket.event.lobby('gotAcceptChallenge', gotAcceptChallenge);
+        socket.event.lobby('gotPlayers', gotPlayers);
 
         socket.emit.lobby('refreshPlayers');
-
-
-        socket.event.lobby('gotChatMessage', gotChatMessage);
-
-        socket.event.lobby('gotAcceptChallenge', function (message) {
-            $location.path('/game');
-            $scope.$apply();
-        });
-
-        socket.event.lobby('gotPlayers', function () {
-            $scope.$apply();
-        });
     };
 
     function gotChatMessage(message) {
         vm.chat.addMessage(message);
+        $scope.$apply();
+    };
+
+    function gotAcceptChallenge(message) {
+        $location.path('/game');
+        $scope.$apply();
+    };
+
+    function gotPlayers(message) {
         $scope.$apply();
     };
 

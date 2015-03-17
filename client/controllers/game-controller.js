@@ -23,35 +23,33 @@ module.exports = function($) {
         ////////////
 
         function activate() {
+            $scope.$on('$destroy', function (event) {
+                socket.event.remove.lobby('gotChatMessage', gotChatMessage);
+                socket.event.remove.game('gotGameData', gotGameData);
+                socket.event.remove.game('gotQuitGame', gotQuitGame);
+            });
+            socket.event.lobby('gotChatMessage', gotChatMessage);
+            socket.event.game('gotGameData', gotGameData);
+            socket.event.game('gotQuitGame', gotQuitGame);
 
-            //scroll to top
             $(window).scrollTop();
-
-            //initialize board
-            paint.paint();
-
-            //join game room to start receiving game events
+            paint.paint(); //initialize board
             socket.emit.game('joinGame', vm.player.gameRoom);
-
-            console.log(vm.player.gameRoom);
-
-            socket.event.game('gotGameData', function (data) {
-                paint.repaint(data);
-            });
-
-            // socket.event.remove.lobby('gotChatMessage', gotChatMessage);
-            // socket.event.lobby('gotChatMessage', gotChatMessage);
-
-            socket.event.game('gotQuitGame', function () {
-                $location.path('/lobby');
-                $scope.$apply();
-            });
         };
 
-        // function gotChatMessage(message) {
-        //     vm.chat.addMessage(message);
-        //     $scope.$apply();
-        // };
+        function gotChatMessage(message) {
+            vm.chat.addMessage(message);
+            $scope.$apply();
+        };
+
+        function gotGameData(data) {
+            paint.repaint(data);
+        };
+
+        function gotQuitGame(message) {
+            $location.path('/lobby');
+            $scope.$apply();
+        };
 
         function quitGame() {
             socket.emit.game('quitGame', vm.player.gameRoom);
