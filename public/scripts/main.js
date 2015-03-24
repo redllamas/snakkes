@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/chat.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/sam/webroot/test/snakkes/client/components/chat.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -25,7 +25,7 @@ function chat() {
 
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/joystick.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/client/components/joystick.js":[function(require,module,exports){
 module.exports = function($) {
     'use strict';
 
@@ -62,7 +62,7 @@ module.exports = function($) {
     };
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/md5.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/client/components/md5.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -85,7 +85,7 @@ function md5() {
     };
 };
 
-},{"crypto-js/md5":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/crypto-js/md5.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/paint.js":[function(require,module,exports){
+},{"crypto-js/md5":"/Users/sam/webroot/test/snakkes/node_modules/crypto-js/md5.js"}],"/Users/sam/webroot/test/snakkes/client/components/paint.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -145,7 +145,7 @@ function paint() {
     };
 };
 
-},{"../../server/components/board/board":"/Users/oliver/repositories/oliverlundquist/snakkes/server/components/board/board.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/players.js":[function(require,module,exports){
+},{"../../server/components/board/board":"/Users/sam/webroot/test/snakkes/server/components/board/board.js"}],"/Users/sam/webroot/test/snakkes/client/components/players.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -196,7 +196,7 @@ function players(socket) {
     };
 }
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/websocket.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/client/components/websocket.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -253,7 +253,7 @@ function socket() {
     };
 };
 
-},{"../../config/config":"/Users/oliver/repositories/oliverlundquist/snakkes/config/config.js","socket.io-client":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/controllers/game-controller.js":[function(require,module,exports){
+},{"../../config/config":"/Users/sam/webroot/test/snakkes/config/config.js","socket.io-client":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/index.js"}],"/Users/sam/webroot/test/snakkes/client/controllers/game-controller.js":[function(require,module,exports){
 module.exports = function($) {
     'use strict';
 
@@ -319,7 +319,7 @@ module.exports = function($) {
 
 }
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/controllers/lobby-controller.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/client/controllers/lobby-controller.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -397,7 +397,7 @@ function LobbyController($scope, $location, socket, md5, players, chat) {
 
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/main.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/client/main.js":[function(require,module,exports){
 var $ = require('jquery');
 require('angular');
 require('angular-route');
@@ -411,7 +411,7 @@ require('./components/paint');
 require('./components/chat');
 require('./components/joystick')($);
 
-},{"./components/chat":"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/chat.js","./components/joystick":"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/joystick.js","./components/md5":"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/md5.js","./components/paint":"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/paint.js","./components/players":"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/players.js","./components/websocket":"/Users/oliver/repositories/oliverlundquist/snakkes/client/components/websocket.js","./controllers/game-controller":"/Users/oliver/repositories/oliverlundquist/snakkes/client/controllers/game-controller.js","./controllers/lobby-controller":"/Users/oliver/repositories/oliverlundquist/snakkes/client/controllers/lobby-controller.js","./routes":"/Users/oliver/repositories/oliverlundquist/snakkes/client/routes.js","angular":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/angular/angular.js","angular-route":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/angular-route/angular-route.js","jquery":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/jquery/dist/jquery.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/client/routes.js":[function(require,module,exports){
+},{"./components/chat":"/Users/sam/webroot/test/snakkes/client/components/chat.js","./components/joystick":"/Users/sam/webroot/test/snakkes/client/components/joystick.js","./components/md5":"/Users/sam/webroot/test/snakkes/client/components/md5.js","./components/paint":"/Users/sam/webroot/test/snakkes/client/components/paint.js","./components/players":"/Users/sam/webroot/test/snakkes/client/components/players.js","./components/websocket":"/Users/sam/webroot/test/snakkes/client/components/websocket.js","./controllers/game-controller":"/Users/sam/webroot/test/snakkes/client/controllers/game-controller.js","./controllers/lobby-controller":"/Users/sam/webroot/test/snakkes/client/controllers/lobby-controller.js","./routes":"/Users/sam/webroot/test/snakkes/client/routes.js","angular":"/Users/sam/webroot/test/snakkes/node_modules/angular/angular.js","angular-route":"/Users/sam/webroot/test/snakkes/node_modules/angular-route/angular-route.js","jquery":"/Users/sam/webroot/test/snakkes/node_modules/jquery/dist/jquery.js"}],"/Users/sam/webroot/test/snakkes/client/routes.js":[function(require,module,exports){
 'use strict';
 
 angular
@@ -445,7 +445,7 @@ angular
             });
     };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/config/config.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/config/config.js":[function(require,module,exports){
 module.exports = function (process) {
     return {
         express: {
@@ -461,7 +461,7 @@ module.exports = function (process) {
     };
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/angular-route/angular-route.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/angular-route/angular-route.js":[function(require,module,exports){
 /**
  * @license AngularJS v1.3.13
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -1452,7 +1452,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/angular/angular.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/angular/angular.js":[function(require,module,exports){
 /**
  * @license AngularJS v1.3.13
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -27583,7 +27583,7 @@ var minlengthDirective = function() {
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/crypto-js/core.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/crypto-js/core.js":[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -28329,7 +28329,7 @@ var minlengthDirective = function() {
 	return CryptoJS;
 
 }));
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/crypto-js/md5.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/crypto-js/md5.js":[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -28598,7 +28598,7 @@ var minlengthDirective = function() {
 	return CryptoJS.MD5;
 
 }));
-},{"./core":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/crypto-js/core.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/d3/d3.js":[function(require,module,exports){
+},{"./core":"/Users/sam/webroot/test/snakkes/node_modules/crypto-js/core.js"}],"/Users/sam/webroot/test/snakkes/node_modules/d3/d3.js":[function(require,module,exports){
 !function() {
   var d3 = {
     version: "3.5.5"
@@ -38103,7 +38103,7 @@ var minlengthDirective = function() {
   if (typeof define === "function" && define.amd) define(d3); else if (typeof module === "object" && module.exports) module.exports = d3;
   this.d3 = d3;
 }();
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.3
  * http://jquery.com/
@@ -47310,11 +47310,11 @@ return jQuery;
 
 }));
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/index.js":[function(require,module,exports){
 
 module.exports = require('./lib/');
 
-},{"./lib/":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/index.js":[function(require,module,exports){
+},{"./lib/":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/index.js":[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -47403,7 +47403,7 @@ exports.connect = lookup;
 exports.Manager = require('./manager');
 exports.Socket = require('./socket');
 
-},{"./manager":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/manager.js","./socket":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/socket.js","./url":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/url.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","socket.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/manager.js":[function(require,module,exports){
+},{"./manager":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/manager.js","./socket":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/socket.js","./url":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/url.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","socket.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/manager.js":[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -47908,7 +47908,7 @@ Manager.prototype.onreconnect = function(){
   this.emitAll('reconnect', attempt);
 };
 
-},{"./on":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/on.js","./socket":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/socket.js","./url":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/url.js","backo2":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/backo2/index.js","component-bind":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-bind/index.js","component-emitter":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","engine.io-client":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/index.js","indexof":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/indexof/index.js","object-component":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/object-component/index.js","socket.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/on.js":[function(require,module,exports){
+},{"./on":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/on.js","./socket":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/socket.js","./url":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/url.js","backo2":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/backo2/index.js","component-bind":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-bind/index.js","component-emitter":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","engine.io-client":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/index.js","indexof":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/indexof/index.js","object-component":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/object-component/index.js","socket.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/on.js":[function(require,module,exports){
 
 /**
  * Module exports.
@@ -47934,7 +47934,7 @@ function on(obj, ev, fn) {
   };
 }
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/socket.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/socket.js":[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -48321,7 +48321,7 @@ Socket.prototype.disconnect = function(){
   return this;
 };
 
-},{"./on":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/on.js","component-bind":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-bind/index.js","component-emitter":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","has-binary":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/has-binary/index.js","socket.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js","to-array":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/to-array/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/lib/url.js":[function(require,module,exports){
+},{"./on":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/on.js","component-bind":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-bind/index.js","component-emitter":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","has-binary":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/has-binary/index.js","socket.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js","to-array":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/to-array/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/lib/url.js":[function(require,module,exports){
 (function (global){
 
 /**
@@ -48398,7 +48398,7 @@ function url(uri, loc){
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","parseuri":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/parseuri/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/backo2/index.js":[function(require,module,exports){
+},{"debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","parseuri":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/parseuri/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/backo2/index.js":[function(require,module,exports){
 
 /**
  * Expose `Backoff`.
@@ -48485,7 +48485,7 @@ Backoff.prototype.setJitter = function(jitter){
 };
 
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-bind/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-bind/index.js":[function(require,module,exports){
 /**
  * Slice reference.
  */
@@ -48510,7 +48510,7 @@ module.exports = function(obj, fn){
   }
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js":[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -48676,7 +48676,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js":[function(require,module,exports){
 
 /**
  * Expose `debug()` as the module.
@@ -48815,11 +48815,11 @@ try {
   if (window.localStorage) debug.enable(localStorage.debug);
 } catch(e){}
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/index.js":[function(require,module,exports){
 
 module.exports =  require('./lib/');
 
-},{"./lib/":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/index.js":[function(require,module,exports){
+},{"./lib/":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/index.js":[function(require,module,exports){
 
 module.exports = require('./socket');
 
@@ -48831,7 +48831,7 @@ module.exports = require('./socket');
  */
 module.exports.parser = require('engine.io-parser');
 
-},{"./socket":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/socket.js","engine.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/socket.js":[function(require,module,exports){
+},{"./socket":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/socket.js","engine.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/socket.js":[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -49540,7 +49540,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./transport":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js","./transports":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/index.js","component-emitter":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","engine.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js","indexof":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/indexof/index.js","parsejson":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parsejson/index.js","parseqs":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js","parseuri":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseuri/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js":[function(require,module,exports){
+},{"./transport":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js","./transports":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/index.js","component-emitter":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","engine.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js","indexof":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/indexof/index.js","parsejson":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parsejson/index.js","parseqs":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js","parseuri":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseuri/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js":[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -49701,7 +49701,7 @@ Transport.prototype.onClose = function () {
   this.emit('close');
 };
 
-},{"component-emitter":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","engine.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/index.js":[function(require,module,exports){
+},{"component-emitter":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","engine.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/index.js":[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies
@@ -49758,7 +49758,7 @@ function polling(opts){
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling-jsonp":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-jsonp.js","./polling-xhr":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-xhr.js","./websocket":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/websocket.js","xmlhttprequest":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-jsonp.js":[function(require,module,exports){
+},{"./polling-jsonp":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-jsonp.js","./polling-xhr":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-xhr.js","./websocket":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/websocket.js","xmlhttprequest":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-jsonp.js":[function(require,module,exports){
 (function (global){
 
 /**
@@ -49995,7 +49995,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling.js","component-inherit":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-xhr.js":[function(require,module,exports){
+},{"./polling":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling.js","component-inherit":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling-xhr.js":[function(require,module,exports){
 (function (global){
 /**
  * Module requirements.
@@ -50383,7 +50383,7 @@ function unloadHandler() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./polling":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling.js","component-emitter":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","component-inherit":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","xmlhttprequest":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling.js":[function(require,module,exports){
+},{"./polling":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling.js","component-emitter":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","component-inherit":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","xmlhttprequest":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/polling.js":[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -50630,7 +50630,7 @@ Polling.prototype.uri = function(){
   return schema + '://' + this.hostname + port + this.path + query;
 };
 
-},{"../transport":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js","component-inherit":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","engine.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js","parseqs":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js","xmlhttprequest":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/websocket.js":[function(require,module,exports){
+},{"../transport":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js","component-inherit":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","engine.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js","parseqs":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js","xmlhttprequest":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transports/websocket.js":[function(require,module,exports){
 /**
  * Module dependencies.
  */
@@ -50870,7 +50870,7 @@ WS.prototype.check = function(){
   return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
 };
 
-},{"../transport":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js","component-inherit":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","engine.io-parser":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js","parseqs":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js","ws":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/lib/browser.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js":[function(require,module,exports){
+},{"../transport":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/transport.js","component-inherit":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js","engine.io-parser":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js","parseqs":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js","ws":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/lib/browser.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/lib/xmlhttprequest.js":[function(require,module,exports){
 // browser shim for xmlhttprequest module
 var hasCORS = require('has-cors');
 
@@ -50908,7 +50908,7 @@ module.exports = function(opts) {
   }
 }
 
-},{"has-cors":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js":[function(require,module,exports){
+},{"has-cors":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/component-inherit/index.js":[function(require,module,exports){
 
 module.exports = function(a, b){
   var fn = function(){};
@@ -50916,7 +50916,7 @@ module.exports = function(a, b){
   a.prototype = new fn;
   a.prototype.constructor = a;
 };
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/browser.js":[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -51065,7 +51065,7 @@ function load() {
 
 exports.enable(load());
 
-},{"./debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/debug.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/debug.js":[function(require,module,exports){
+},{"./debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/debug.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/debug.js":[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -51264,7 +51264,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/node_modules/ms/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/node_modules/ms/index.js":[function(require,module,exports){
+},{"ms":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/node_modules/ms/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/debug/node_modules/ms/index.js":[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -51377,7 +51377,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/browser.js":[function(require,module,exports){
 (function (global){
 /**
  * Module dependencies.
@@ -51975,7 +51975,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./keys":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/keys.js","after":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/after/index.js","arraybuffer.slice":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/arraybuffer.slice/index.js","base64-arraybuffer":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/base64-arraybuffer/lib/base64-arraybuffer.js","blob":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/blob/index.js","has-binary":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/index.js","utf8":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/utf8/utf8.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/keys.js":[function(require,module,exports){
+},{"./keys":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/keys.js","after":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/after/index.js","arraybuffer.slice":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/arraybuffer.slice/index.js","base64-arraybuffer":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/base64-arraybuffer/lib/base64-arraybuffer.js","blob":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/blob/index.js","has-binary":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/index.js","utf8":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/utf8/utf8.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/lib/keys.js":[function(require,module,exports){
 
 /**
  * Gets the keys for an object.
@@ -51996,7 +51996,7 @@ module.exports = Object.keys || function keys (obj){
   return arr;
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/after/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/after/index.js":[function(require,module,exports){
 module.exports = after
 
 function after(count, callback, err_cb) {
@@ -52026,7 +52026,7 @@ function after(count, callback, err_cb) {
 
 function noop() {}
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/arraybuffer.slice/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/arraybuffer.slice/index.js":[function(require,module,exports){
 /**
  * An abstraction for slicing an arraybuffer even when
  * ArrayBuffer.prototype.slice is not supported
@@ -52057,7 +52057,7 @@ module.exports = function(arraybuffer, start, end) {
   return result.buffer;
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/base64-arraybuffer/lib/base64-arraybuffer.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/base64-arraybuffer/lib/base64-arraybuffer.js":[function(require,module,exports){
 /*
  * base64-arraybuffer
  * https://github.com/niklasvh/base64-arraybuffer
@@ -52118,7 +52118,7 @@ module.exports = function(arraybuffer, start, end) {
   };
 })("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/blob/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/blob/index.js":[function(require,module,exports){
 (function (global){
 /**
  * Create a blob builder even when vendor prefixes exist
@@ -52171,7 +52171,7 @@ module.exports = (function() {
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/index.js":[function(require,module,exports){
 (function (global){
 
 /*
@@ -52233,12 +52233,12 @@ function hasBinary(data) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"isarray":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js":[function(require,module,exports){
+},{"isarray":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js":[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/utf8/utf8.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/utf8/utf8.js":[function(require,module,exports){
 (function (global){
 /*! http://mths.be/utf8js v2.0.0 by @mathias */
 ;(function(root) {
@@ -52481,7 +52481,7 @@ module.exports = Array.isArray || function (arr) {
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/index.js":[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -52506,7 +52506,7 @@ try {
   module.exports = false;
 }
 
-},{"global":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/node_modules/global/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/node_modules/global/index.js":[function(require,module,exports){
+},{"global":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/node_modules/global/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/has-cors/node_modules/global/index.js":[function(require,module,exports){
 
 /**
  * Returns `this`. Execute this without a "context" (i.e. without it being
@@ -52516,7 +52516,7 @@ try {
 
 module.exports = (function () { return this; })();
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parsejson/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parsejson/index.js":[function(require,module,exports){
 (function (global){
 /**
  * JSON parse.
@@ -52551,7 +52551,7 @@ module.exports = function parsejson(data) {
   }
 };
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseqs/index.js":[function(require,module,exports){
 /**
  * Compiles a querystring
  * Returns string representation of the object
@@ -52590,7 +52590,7 @@ exports.decode = function(qs){
   return qry;
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseuri/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/parseuri/index.js":[function(require,module,exports){
 /**
  * Parses an URI
  *
@@ -52631,7 +52631,7 @@ module.exports = function parseuri(str) {
     return uri;
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/lib/browser.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/ws/lib/browser.js":[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -52676,7 +52676,7 @@ function ws(uri, protocols, opts) {
 
 if (WebSocket) ws.prototype = WebSocket.prototype;
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/has-binary/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/has-binary/index.js":[function(require,module,exports){
 (function (global){
 
 /*
@@ -52738,9 +52738,9 @@ function hasBinary(data) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"isarray":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/has-binary/node_modules/isarray/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/has-binary/node_modules/isarray/index.js":[function(require,module,exports){
-arguments[4]["/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/indexof/index.js":[function(require,module,exports){
+},{"isarray":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/has-binary/node_modules/isarray/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/has-binary/node_modules/isarray/index.js":[function(require,module,exports){
+arguments[4]["/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/indexof/index.js":[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
@@ -52751,7 +52751,7 @@ module.exports = function(arr, obj){
   }
   return -1;
 };
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/object-component/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/object-component/index.js":[function(require,module,exports){
 
 /**
  * HOP ref.
@@ -52836,7 +52836,7 @@ exports.length = function(obj){
 exports.isEmpty = function(obj){
   return 0 == exports.length(obj);
 };
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/parseuri/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/parseuri/index.js":[function(require,module,exports){
 /**
  * Parses an URI
  *
@@ -52863,7 +52863,7 @@ module.exports = function parseuri(str) {
   return uri;
 };
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/binary.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/binary.js":[function(require,module,exports){
 (function (global){
 /*global Blob,File*/
 
@@ -53008,7 +53008,7 @@ exports.removeBlobs = function(data, callback) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./is-buffer":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/is-buffer.js","isarray":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js":[function(require,module,exports){
+},{"./is-buffer":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/is-buffer.js","isarray":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/index.js":[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -53410,7 +53410,7 @@ function error(data){
   };
 }
 
-},{"./binary":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/binary.js","./is-buffer":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/is-buffer.js","component-emitter":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","isarray":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js","json3":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/json3/lib/json3.js"}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/is-buffer.js":[function(require,module,exports){
+},{"./binary":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/binary.js","./is-buffer":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/is-buffer.js","component-emitter":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/component-emitter/index.js","debug":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/debug/debug.js","isarray":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js","json3":"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/json3/lib/json3.js"}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/is-buffer.js":[function(require,module,exports){
 (function (global){
 
 module.exports = isBuf;
@@ -53427,9 +53427,9 @@ function isBuf(obj) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js":[function(require,module,exports){
-arguments[4]["/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/json3/lib/json3.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js":[function(require,module,exports){
+arguments[4]["/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/json3/lib/json3.js":[function(require,module,exports){
 /*! JSON v3.2.6 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
 ;(function (window) {
   // Convenience aliases.
@@ -54292,7 +54292,7 @@ arguments[4]["/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/so
   }
 }(this));
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/socket.io-client/node_modules/to-array/index.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/to-array/index.js":[function(require,module,exports){
 module.exports = toArray
 
 function toArray(list, index) {
@@ -54307,7 +54307,7 @@ function toArray(list, index) {
     return array
 }
 
-},{}],"/Users/oliver/repositories/oliverlundquist/snakkes/server/components/board/board.js":[function(require,module,exports){
+},{}],"/Users/sam/webroot/test/snakkes/server/components/board/board.js":[function(require,module,exports){
 var d3 = require('d3');
 
 module.exports = function () {
@@ -54336,4 +54336,4 @@ module.exports = function () {
     };
 }
 
-},{"d3":"/Users/oliver/repositories/oliverlundquist/snakkes/node_modules/d3/d3.js"}]},{},["/Users/oliver/repositories/oliverlundquist/snakkes/client/main.js"]);
+},{"d3":"/Users/sam/webroot/test/snakkes/node_modules/d3/d3.js"}]},{},["/Users/sam/webroot/test/snakkes/client/main.js"]);
