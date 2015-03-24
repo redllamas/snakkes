@@ -453,7 +453,7 @@ module.exports = function (process) {
             port: (process && process.env.PORT || 3000)
         },
         websocket: {
-            host: "https://desolate-plains-6714.herokuapp.com"
+            host: "https://enigmatic-woodland-6497.herokuapp.com"
         },
         store: {
             ip: "192.168.100.111"
@@ -53428,7 +53428,7 @@ function isBuf(obj) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js":[function(require,module,exports){
-arguments[4]["/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
+arguments[4]["/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
 },{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/json3/lib/json3.js":[function(require,module,exports){
 /*! JSON v3.2.6 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
 ;(function (window) {

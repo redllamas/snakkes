@@ -1,5 +1,6 @@
 var Worm = require('../worm/worm');
 var Apple = require('../apple/apple');
+var Player = require('../player/players');
 
 function Game(defender, challenger, gameRoomId) {
     this.gameRoomId = gameRoomId;

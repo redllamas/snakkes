@@ -7,6 +7,7 @@ module.exports = function (game) {
         if(apple.coordsCollision(worm.getCoordinates())) {
             apple.eaten = true;
             worm.ateApple = true;
+            player.score++;
         };
     });
 

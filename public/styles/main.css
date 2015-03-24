@@ -2446,6 +2446,9 @@ body {
     height: auto; }
   .player-list .player .name {
     float: left; }
+  .player-list .player .score {
+    float: right;
+    font-weight: bold; }
   .player-list .player .challenge {
     float: right;
     width: 100px; }
