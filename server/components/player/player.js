@@ -4,10 +4,14 @@ function Player(id) {
     this.defender = false;
     this.inGame = false;
     this.gameRoom = '';
-    this.score = 25;
+    this.score = 0;
     this.id = id;
     this.name = id;
     this.email = '';
+};
+
+Player.prototype.addScore = function (points) {
+    this.score += points;
 };
 
 Player.prototype.update = function (player) {

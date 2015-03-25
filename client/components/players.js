@@ -12,6 +12,8 @@ function players(socket) {
     socket.event.lobby('connect',      setPlayerId);
     socket.event.lobby('gotChallenge', updateOpponent);
     socket.event.lobby('gotPlayers',   updatePlayers);
+    // socket.event.game('gotScoreData', updateScores);
+
 
     var list = [];
     var player = {};
@@ -20,6 +22,7 @@ function players(socket) {
         list: list,
         player: player,
         opponent: opponent
+        // updateScores: updateScores
     };
     return service;
 

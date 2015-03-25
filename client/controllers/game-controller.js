@@ -17,6 +17,7 @@ module.exports = function($) {
         vm.chatMessage = '';
         vm.quitGame    = quitGame;
         vm.sendMessage = sendMessage;
+        
 
         activate();
 
@@ -26,10 +27,12 @@ module.exports = function($) {
             $scope.$on('$destroy', function (event) {
                 socket.event.remove.lobby('gotChatMessage', gotChatMessage);
                 socket.event.remove.game('gotGameData', gotGameData);
+                socket.event.remove.game('gotScoreData', gotScoreData);
                 socket.event.remove.game('gotQuitGame', gotQuitGame);
             });
             socket.event.lobby('gotChatMessage', gotChatMessage);
             socket.event.game('gotGameData', gotGameData);
+            socket.event.game('gotScoreData', gotScoreData);
             socket.event.game('gotQuitGame', gotQuitGame);
 
             $(window).scrollTop();
@@ -44,6 +47,11 @@ module.exports = function($) {
 
         function gotGameData(data) {
             paint.repaint(data);
+        };
+
+        function gotScoreData(scores) {
+            paint.updateScores(scores);
+            
         };
 
         function gotQuitGame(message) {

@@ -16,7 +16,8 @@ function paint() {
     var ph = board.ph;
     var service = {
         paint: paint,
-        repaint: repaint
+        repaint: repaint,
+        updateScores: updateScores
     };
     return service;
 
@@ -54,5 +55,27 @@ function paint() {
             _this.attr('fill', fill);
         });
 
+    };
+
+    function updateScores (scores) {
+        var localScores = [];
+        scores.forEach(function (score) {
+            localScores.push(score);
+        });
+        d3.selectAll('.score')
+            .data(localScores)
+            .text(function(score) { return score; });
+
+
+        // d3.selectAll('.score').each(function () {
+        //     var _this = d3.select(this);
+        //     var score = parseInt(_this.attr('score'), score);
+            
+        //     scores.forEach(function (score) {
+        //         return score;
+        //     });
+
+        //     _this.attr('score', score);
+        // });
     };
 };

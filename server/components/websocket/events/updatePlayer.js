@@ -8,7 +8,7 @@ module.exports = function (namespace, socket) {
 
         //lobby events
         if(namespace.name === '/lobby') {
-            namespace.emit('gotPlayers', players.list);;
+            namespace.emit('gotPlayers', players.list);
         }
 
     });

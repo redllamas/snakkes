@@ -7,14 +7,17 @@
 	</div>
 	<div>
 	<h3>Now playing</h3>
+		<div id="#scoreboard">
+			<div class="score">0</div>
+			<div class="score">0</div>
+		</div>
 		<div class="player-list">
 			<div class="player" ng-repeat="player in vm.players" ng-class="{ active: player.id === vm.player.id }">
 				<img ng-src="https://www.gravatar.com/avatar/{{ vm.md5.hash(player.email) }}" />
-				<div class="name">{{ player.name }}</div><br />
+				<div class="name">{{ player.name }}</div>
 				<div class="score">{{ player.score }}</div>
 				<!-- <div class="status" ng-show=" ! player.canChallenge">{{ player.inGame ? 'currently playing' : 'challenging another player' }}</div>
 				<button class="challenge" ng-show="player.id !== vm.player.id" ng-disabled=" ! player.canChallenge || player.inGame" ng-click="vm.challenge(player.id)">challenge</button> -->
-
 			</div>
 		</div>
 		<h3>Player chat</h3>

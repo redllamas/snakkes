@@ -104,7 +104,8 @@ function paint() {
     var ph = board.ph;
     var service = {
         paint: paint,
-        repaint: repaint
+        repaint: repaint,
+        updateScores: updateScores
     };
     return service;
 
@@ -143,6 +144,28 @@ function paint() {
         });
 
     };
+
+    function updateScores (scores) {
+        var localScores = [];
+        scores.forEach(function (score) {
+            localScores.push(score);
+        });
+        d3.selectAll('.score')
+            .data(localScores)
+            .text(function(score) { return score; });
+
+
+        // d3.selectAll('.score').each(function () {
+        //     var _this = d3.select(this);
+        //     var score = parseInt(_this.attr('score'), score);
+            
+        //     scores.forEach(function (score) {
+        //         return score;
+        //     });
+
+        //     _this.attr('score', score);
+        // });
+    };
 };
 
 },{"../../server/components/board/board":"/Users/sam/webroot/test/snakkes/server/components/board/board.js"}],"/Users/sam/webroot/test/snakkes/client/components/players.js":[function(require,module,exports){
@@ -160,6 +183,8 @@ function players(socket) {
     socket.event.lobby('connect',      setPlayerId);
     socket.event.lobby('gotChallenge', updateOpponent);
     socket.event.lobby('gotPlayers',   updatePlayers);
+    // socket.event.game('gotScoreData', updateScores);
+
 
     var list = [];
     var player = {};
@@ -168,6 +193,7 @@ function players(socket) {
         list: list,
         player: player,
         opponent: opponent
+        // updateScores: updateScores
     };
     return service;
 
@@ -273,6 +299,7 @@ module.exports = function($) {
         vm.chatMessage = '';
         vm.quitGame    = quitGame;
         vm.sendMessage = sendMessage;
+        
 
         activate();
 
@@ -282,10 +309,12 @@ module.exports = function($) {
             $scope.$on('$destroy', function (event) {
                 socket.event.remove.lobby('gotChatMessage', gotChatMessage);
                 socket.event.remove.game('gotGameData', gotGameData);
+                socket.event.remove.game('gotScoreData', gotScoreData);
                 socket.event.remove.game('gotQuitGame', gotQuitGame);
             });
             socket.event.lobby('gotChatMessage', gotChatMessage);
             socket.event.game('gotGameData', gotGameData);
+            socket.event.game('gotScoreData', gotScoreData);
             socket.event.game('gotQuitGame', gotQuitGame);
 
             $(window).scrollTop();
@@ -300,6 +329,11 @@ module.exports = function($) {
 
         function gotGameData(data) {
             paint.repaint(data);
+        };
+
+        function gotScoreData(scores) {
+            paint.updateScores(scores);
+            
         };
 
         function gotQuitGame(message) {
@@ -453,7 +487,7 @@ module.exports = function (process) {
             port: (process && process.env.PORT || 3000)
         },
         websocket: {
-            host: "https://enigmatic-woodland-6497.herokuapp.com"
+            host: "https://desolate-plains-6714.herokuapp.com"
         },
         store: {
             ip: "192.168.100.111"
@@ -53428,7 +53462,7 @@ function isBuf(obj) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/isarray/index.js":[function(require,module,exports){
-arguments[4]["/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
+arguments[4]["/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/engine.io-client/node_modules/engine.io-parser/node_modules/has-binary/node_modules/isarray/index.js"][0].apply(exports,arguments)
 },{}],"/Users/sam/webroot/test/snakkes/node_modules/socket.io-client/node_modules/socket.io-parser/node_modules/json3/lib/json3.js":[function(require,module,exports){
 /*! JSON v3.2.6 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
 ;(function (window) {

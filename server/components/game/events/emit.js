@@ -5,6 +5,7 @@ module.exports = function (game) {
     websocket(function (socket, sockets) {
 
         var colors = [];
+        var scores = [];
         var apple = game.apple;
         var worms = game.worms;
 
@@ -17,9 +18,21 @@ module.exports = function (game) {
             });
         });
 
+        scores.push({ score: score });
+        
+        worms.forEach(function (worm) {  
+          if(apple.coordsCollision(worm.getCoordinates())) {
+            // apple.eaten = true;
+            // worm.ateApple = true;
+            score += 10;
+            scores.push({ score: score });
+          };
+        });
+
         //shorthand for:
         //socket.of('/game').to(game.gameRoomId).emit('message', colors);
         sockets[1].to(game.gameRoomId).emit('gotGameData', colors);
+        sockets[1].to(game.gameRoomId).emit('gotScoreData', scores);
     });
 
 };
